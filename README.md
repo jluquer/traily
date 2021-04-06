@@ -25,7 +25,7 @@ Traily is a **web application** where you can share your trails with other users
 ## Features :memo:
 
 - Users can be a normal user or an admin.
-- Users have to be logged in to::
+- Users have to be logged in to:
   - Follow or unfollow other users.
   - Post and upload their tracks files.
   - Download other users track files.
