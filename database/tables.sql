@@ -1,29 +1,26 @@
-CREATE TABLE user
+CREATE TABLE IF NOT EXISTS user
 (
-  userId INT NOT NULL,
+  userId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(80) NOT NULL,
   password VARCHAR(255) NOT NULL,
   email VARCHAR(150) NOT NULL,
-  type INT NOT NULL,
-  PRIMARY KEY (userId)
+  type TINYINT NOT NULL
 );
 
-CREATE TABLE activity
+CREATE TABLE IF NOT EXISTS activity 
 (
-  activityId INT NOT NULL,
-  activity VARCHAR(100) NOT NULL,
-  PRIMARY KEY (activityId)
+  activityId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  activity VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE challenge
+CREATE TABLE IF NOT EXISTS challenge
 (
-  challengeId INT NOT NULL,
+  challengeId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   title VARCHAR(100) NOT NULL,
-  description TEXT NOT NULL,
-  PRIMARY KEY (challengeId)
+  description TEXT NOT NULL
 );
 
-CREATE TABLE user_challenge
+CREATE TABLE IF NOT EXISTS user_challenge
 (
   userId INT NOT NULL,
   challengeId INT NOT NULL,
@@ -33,31 +30,29 @@ CREATE TABLE user_challenge
   FOREIGN KEY (challengeId) REFERENCES challenge(challengeId)
 );
 
-CREATE TABLE challenge_comment
+CREATE TABLE IF NOT EXISTS challenge_comment
 (
-  challengeCommentId INT NOT NULL,
+  challengeCommentId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   comment TEXT NOT NULL,
   userId INT NOT NULL,
   challengeId INT NOT NULL,
-  PRIMARY KEY (challengeCommentId),
   FOREIGN KEY (userId) REFERENCES user(userId),
   FOREIGN KEY (challengeId) REFERENCES challenge(challengeId),
   UNIQUE (userId, challengeId)
 );
 
-CREATE TABLE follow
+CREATE TABLE IF NOT EXISTS follow
 (
-  followId INT NOT NULL
+  followId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   userId INT NOT NULL,
   followerUserId INT NOT NULL,
-  PRIMARY KEY (followId),
   FOREIGN KEY (userId) REFERENCES user(userId),
   FOREIGN KEY (followerUserId) REFERENCES user(userId)
 );
 
-CREATE TABLE trail
+CREATE TABLE IF NOT EXISTS trail
 (
-  trailId INT NOT NULL,
+  trailId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   description TEXT,
   distance INT,
   elev_gain INT,
@@ -71,12 +66,11 @@ CREATE TABLE trail
   city VARCHAR(120) NOT NULL,
   activityId INT NOT NULL,
   userId INT NOT NULL,
-  PRIMARY KEY (trailId),
   FOREIGN KEY (activityId) REFERENCES activity(activityId),
   FOREIGN KEY (userId) REFERENCES user(userId)
 );
 
-CREATE TABLE user_route
+CREATE TABLE IF NOT EXISTS trail_review
 (
   userId INT NOT NULL,
   trailId INT NOT NULL,
@@ -87,13 +81,12 @@ CREATE TABLE user_route
   FOREIGN KEY (trailId) REFERENCES trail(trailId)
 );
 
-CREATE TABLE trail_comment
+CREATE TABLE IF NOT EXISTS trail_comment
 (
+  trailCommentId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  comment TEXT NOT NULL,
   userId INT NOT NULL,
   trailId INT NOT NULL,
-  comment TEXT NOT NULL,
-  trailCommentId INT NOT NULL,
-  PRIMARY KEY (trailCommentId),
   FOREIGN KEY (userId) REFERENCES user(userId),
   FOREIGN KEY (trailId) REFERENCES trail(trailId),
   UNIQUE (userId, trailId)

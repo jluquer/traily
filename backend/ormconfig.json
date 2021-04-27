@@ -2,9 +2,9 @@
    "type": "mysql",
    "host": "localhost",
    "port": 3306,
-   "username": "test",
-   "password": "test",
-   "database": "test",
+   "username": "luque",
+   "password": "luque",
+   "database": "traily",
    "synchronize": true,
    "logging": false,
    "entities": [
@@ -17,7 +17,7 @@
       "src/subscriber/**/*.ts"
    ],
    "cli": {
-      "entitiesDir": "src/entity",
+      "entitiesDir": "src/models",
       "migrationsDir": "src/migration",
       "subscribersDir": "src/subscriber"
    }
