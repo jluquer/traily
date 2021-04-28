@@ -22,15 +22,15 @@ export class Follow {
   followerUserId: number;
 
   @ManyToOne(() => User, (user) => user.follows, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   user: User;
 
-  @ManyToOne(() => User, (user) => user.follows2, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+  @ManyToOne(() => User, (user) => user.followers, {
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "followerUserId", referencedColumnName: "userId" }])
   followerUser: User;
