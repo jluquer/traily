@@ -15,7 +15,7 @@ createConnection()
     app.use(helmet());
     app.use(morgan("dev"));
     app.use(express.json());
-    app.use("/", routes);
+    app.use("/api", routes);
 
     app.listen(port, () => {
       console.log(`Server running on http://localhost:${port}`);
