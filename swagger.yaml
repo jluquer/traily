@@ -144,12 +144,7 @@ paths:
       parameters:
         - name: "userId"
           in: "header"
-          description: "userId of who are you going to follow"
-          required: true
-          type: "integer"
-        - name: "followerId"
-          in: "header"
-          description: "Logged user's id"
+          description: "User id of who are you going to follow"
           required: true
           type: "integer"
       responses:
