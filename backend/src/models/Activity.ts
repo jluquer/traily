@@ -1,3 +1,4 @@
+import { MinLength } from "class-validator";
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Trail } from "./Trail";
 
@@ -7,6 +8,7 @@ export class Activity {
   activityId: number;
 
   @Column("varchar", { name: "activity", length: 100 })
+  @MinLength(3)
   activity: string;
 
   @OneToMany(() => Trail, (trail) => trail.activity)
