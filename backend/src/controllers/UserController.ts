@@ -1,7 +1,6 @@
 import { validate } from "class-validator";
 import { Request, Response } from "express";
 import { getRepository, Like } from "typeorm";
-import { getUserFromToken } from "../libs/tokenUtils";
 import { Follow } from "../models/Follow";
 import { User } from "../models/User";
 
@@ -58,7 +57,7 @@ export default class UserController {
     if (!+id) return res.status(400).json("Invalid user id");
 
     try {
-      const loggedUser = await getUserFromToken(req.headers["token"] as string);
+      const loggedUser = await userRepository.findOneOrFail(res.locals.payload.userId);
       if (!(loggedUser.userId === +id || loggedUser.type === 1))
         return res.status(401).json({ status: "error" });
 
@@ -96,7 +95,7 @@ export default class UserController {
     if (!+id) return res.status(400).json("Invalid user id");
 
     try {
-      const loggedUser = await getUserFromToken(req.headers["token"] as string);
+      const loggedUser = await userRepository.findOneOrFail(res.locals.payload.userId);
       if (!(loggedUser.userId === +id || loggedUser.type === 0))
         return res.status(401).json({ status: "error" });
       userToRemove = await userRepository.findOneOrFail(+id);
@@ -116,13 +115,13 @@ export default class UserController {
     const followRepository = getRepository(Follow);
 
     try {
-      const followerUser = await getUserFromToken(req.headers["token"] as string);
+      const followerUser = await userRepository.findOneOrFail(res.locals.payload.userId);
 
       let follow = await followRepository.findOne({
         where: { followerUserId: followerUser.userId, userId: +id },
       });
 
-      if (follow) return res.status(409).json({ message: "You already follow this user" });
+      if (follow || followerUser.userId === +id) return res.status(409).json({ status: "error" });
 
       const followingUser = await userRepository.findOneOrFail(+id);
 
@@ -147,10 +146,9 @@ export default class UserController {
     if (!+id) return res.status(400).json("Invalid user id");
 
     try {
-      const loggedUser = await getUserFromToken(req.headers["token"] as string);
       const follow = await followRepository
         .createQueryBuilder("follow")
-        .where("followerUserId = :followerId", { followerId: loggedUser.userId })
+        .where("followerUserId = :followerId", { followerId: res.locals.payload.userId })
         .andWhere("userId = :userId", { userId: +id })
         .getOneOrFail();
 
@@ -163,8 +161,7 @@ export default class UserController {
 
   getFollowing = async (req: Request, res: Response) => {
     try {
-      const loggedUser = await getUserFromToken(req.headers["token"] as string);
-      const user = await getRepository(User).findOneOrFail(loggedUser.userId, {
+      const user = await getRepository(User).findOneOrFail(res.locals.payload.userId, {
         relations: ["follows"],
       });
       res.json(user.follows);
@@ -175,8 +172,7 @@ export default class UserController {
 
   getFollowers = async (req: Request, res: Response) => {
     try {
-      const loggedUser = await getUserFromToken(req.headers["token"] as string);
-      const user = await getRepository(User).findOneOrFail(loggedUser.userId, {
+      const user = await getRepository(User).findOneOrFail(res.locals.payload.userId, {
         relations: ["followers"],
       });
       res.json(user.followers);
