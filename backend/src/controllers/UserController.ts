@@ -54,13 +54,8 @@ export default class UserController {
     let userToUpdate: User = null;
     const userRepository = getRepository(User);
 
-    if (!+id) return res.status(400).json("Invalid user id");
-
     try {
       const loggedUser = await userRepository.findOneOrFail(res.locals.payload.userId);
-      if (!(loggedUser.userId === +id || loggedUser.type === 1))
-        return res.status(401).json({ status: "error" });
-
       userToUpdate = await userRepository
         .createQueryBuilder("user")
         .addSelect("user.password")
@@ -69,11 +64,9 @@ export default class UserController {
       userToUpdate.name = name;
       userToUpdate.email = email;
 
-      if (loggedUser.type === 0 && req.body.type) {
-        userToUpdate.type = req.body.type;
-      }
+      if (loggedUser.type === 0 && req.body.type) userToUpdate.type = req.body.type;
     } catch (err) {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ status: "error" });
     }
 
     const errors = await validate(userToUpdate);
@@ -88,22 +81,15 @@ export default class UserController {
   };
 
   delete = async (req: Request, res: Response) => {
-    const { id } = req.headers;
-    let userToRemove: User = null;
-    const userRepository = getRepository(User);
-
-    if (!+id) return res.status(400).json("Invalid user id");
-
     try {
-      const loggedUser = await userRepository.findOneOrFail(res.locals.payload.userId);
-      if (!(loggedUser.userId === +id || loggedUser.type === 0))
-        return res.status(401).json({ status: "error" });
-      userToRemove = await userRepository.findOneOrFail(+id);
+      const { id } = req.headers;
+      const userRepository = getRepository(User);
+      const userToRemove = await userRepository.findOneOrFail(+id);
+      await userRepository.remove(userToRemove);
+      res.status(201).json({ status: "success" });
     } catch (err) {
-      res.status(404).json({ message: "User not found" });
+      res.status(404).json({ status: "error" });
     }
-    await userRepository.remove(userToRemove);
-    res.status(201).json({ message: "User deleted" });
   };
 
   follow = async (req: Request, res: Response) => {

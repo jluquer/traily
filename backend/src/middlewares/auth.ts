@@ -30,3 +30,17 @@ export const isAdmin = async (req: Request, res: Response, next: NextFunction) =
     res.status(401).json({ message: "not authorized" });
   }
 };
+
+export const isAdminOrUser = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { id } = req.headers;
+    if (!+id) return res.status(400).json("Invalid id");
+
+    const loggedUser = await getRepository(User).findOneOrFail(res.locals.payload.userId);
+    if (!(loggedUser.userId === +id || loggedUser.type === 0))
+      return res.status(401).json({ status: "error" });
+    next();
+  } catch (err) {
+    return res.status(404).json({ status: "error" });
+  }
+};

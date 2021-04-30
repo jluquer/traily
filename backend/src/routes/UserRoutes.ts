@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { verifyToken } from "../middlewares/auth";
+import { isAdminOrUser, verifyToken } from "../middlewares/auth";
 import UserController from "../controllers/UserController";
 
 const router = Router();
@@ -7,8 +7,8 @@ const userController = new UserController();
 router.get("/getAll", [verifyToken], userController.getAll);
 router.get("/getOneById", [verifyToken], userController.getOneById);
 router.post("/create", userController.create);
-router.put("/update", [verifyToken], userController.update);
-router.delete("/delete", [verifyToken], userController.delete);
+router.put("/update", [verifyToken, isAdminOrUser], userController.update);
+router.delete("/delete", [verifyToken, isAdminOrUser], userController.delete);
 router.post("/follow", [verifyToken], userController.follow);
 router.delete("/unfollow", [verifyToken], userController.unfollow);
 router.get("/getFollowing", [verifyToken], userController.getFollowing);
