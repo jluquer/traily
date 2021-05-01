@@ -12,7 +12,7 @@ export default class UserController {
       const users = await getRepository(User).find();
       res.status(200).json(users);
     } catch {
-      res.status(404).json({ message: "No users found" });
+      res.status(404).json({ status: "error" });
     }
   };
 
@@ -24,7 +24,7 @@ export default class UserController {
       const users = await getRepository(User).findOneOrFail(+id);
       res.status(200).json(users);
     } catch {
-      res.status(404).json({ message: "No users found" });
+      res.status(404).json({ status: "error" });
     }
   };
 
