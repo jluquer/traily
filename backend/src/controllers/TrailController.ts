@@ -71,7 +71,6 @@ export default class TrailController {
       await trailRepository.save(trail);
       return res.status(201).json({ status: "success" });
     } catch (err) {
-      console.log(err);
       return res.status(400).json({ status: "error" });
     }
   }
@@ -91,9 +90,30 @@ export default class TrailController {
   static async uploadFile(req: Request, res: Response): Promise<Response> {
     try {
       const filepath = req.file.filename;
+      if (!Trail.isTrackFile(filepath)) {
+        StorageHelper.deleteFile(filepath);
+        throw "Unsupported file extension";
+      }
       return res.json({ filepath });
     } catch (error) {
       return res.status(400).json({ status: "error" });
+    }
+  }
+
+  static async getTrackFile(req: Request, res: Response): Promise<Response> {
+    try {
+      const trailFilepath = req.headers.filepath as string;
+      res.sendFile(StorageHelper.getFile(trailFilepath));
+    } catch (err) {
+      return res.status(404).json({ status: "error" });
+    }
+  }
+  static async downloadTrackFile(req: Request, res: Response): Promise<Response> {
+    try {
+      const trailFilepath = req.headers.filepath as string;
+      res.download(StorageHelper.getFile(trailFilepath.toString()));
+    } catch (err) {
+      return res.status(404).json({ status: "error" });
     }
   }
 }

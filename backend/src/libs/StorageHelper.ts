@@ -24,4 +24,11 @@ export default class StorageHelper {
     const file = StorageHelper.dir + "/" + filename;
     if (fs.existsSync(file)) fs.unlinkSync(file);
   }
+
+  static getFile(filename: string): string {
+    const file = StorageHelper.dir + "/" + filename;
+    if (fs.existsSync(file)) {
+      return path.resolve(file);
+    }
+  }
 }

@@ -84,4 +84,8 @@ export class Trail {
 
   @OneToMany(() => TrailComment, (trailComment) => trailComment.trail)
   trailComments: TrailComment[];
+
+  static isTrackFile(filename: string): boolean {
+    return filename !== undefined && filename.match(/\.(gpx)$/g) !== null;
+  }
 }
