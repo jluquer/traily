@@ -16,7 +16,7 @@ Traily is a **web application** where you can share your trails with other users
 
 - [Angular :link:](https://angular.io/)
 - [NodeJS :link:](https://nodejs.org)
-- [Swagger :link:](https://swagger.io/)
+- [TypeORM :link:](https://typeorm.io/#/)
 
 ### Database :card_index_dividers:
 
@@ -36,4 +36,5 @@ Traily is a **web application** where you can share your trails with other users
   - Create, delete, update and list users.
 
 ## How to use :thinking:
+
 > **_Not available yet_**
