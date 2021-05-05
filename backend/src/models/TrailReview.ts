@@ -1,6 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
 import { Trail } from "./Trail";
+import { IsNotEmpty, Max, Min } from "class-validator";
 
 @Index("trailId", ["trailId"], {})
 @Entity("trail_review", { schema: "traily" })
@@ -12,9 +13,12 @@ export class TrailReview {
   trailId: number;
 
   @Column("int", { name: "rating" })
+  @IsNotEmpty()
+  @Min(1)
+  @Max(5)
   rating: number;
 
-  @Column("text", { name: "review" })
+  @Column("text", { name: "review", nullable: true })
   review: string;
 
   @ManyToOne(() => User, (user) => user.trailReviews, {

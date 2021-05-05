@@ -33,7 +33,7 @@ export const isAdmin = async (req: Request, res: Response, next: NextFunction) =
 
 export const isAdminOrUser = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { id } = req.headers;
+    const id  = req.headers.id || req.header("userId");
     if (!+id) return res.status(400).json("Invalid id");
 
     const loggedUser = await getRepository(User).findOneOrFail(res.locals.payload.userId);
