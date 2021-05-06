@@ -1,6 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
 import { Challenge } from "./Challenge";
+import { IsNotEmpty } from "class-validator";
 
 @Index("challengeId", ["challengeId"], {})
 @Entity("user_challenge", { schema: "traily" })
@@ -12,6 +13,7 @@ export class UserChallenge {
   challengeId: number;
 
   @Column("varchar", { name: "status", length: 30 })
+  @IsNotEmpty()
   status: string;
 
   @ManyToOne(() => User, (user) => user.userChallenges, {
@@ -19,6 +21,7 @@ export class UserChallenge {
     onUpdate: "RESTRICT",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
+  @IsNotEmpty()
   user: User;
 
   @ManyToOne(() => Challenge, (challenge) => challenge.userChallenges, {
@@ -26,5 +29,6 @@ export class UserChallenge {
     onUpdate: "RESTRICT",
   })
   @JoinColumn([{ name: "challengeId", referencedColumnName: "challengeId" }])
+  @IsNotEmpty()
   challenge: Challenge;
 }
