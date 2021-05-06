@@ -4,6 +4,7 @@ Traily is a **web application** where you can share your trails with other users
 
 ## Table of contents
 
+- [Table of contents](#table-of-contents)
 - [Overview :open_book:](#overview-open_book)
   - [Built with :hammer:](#built-with-hammer)
   - [Database :card_index_dividers:](#database-card_index_dividers)
@@ -37,4 +38,8 @@ Traily is a **web application** where you can share your trails with other users
 
 ## How to use :thinking:
 
-> **_Not available yet_**
+Steps to run backend:
+1. Change to backend directory `cd backend`
+2. Run `npm i` command
+3. Setup database settings inside `ormconfig.json` file
+4. Run `npm start` command
