@@ -39,6 +39,7 @@ Traily is a **web application** where you can share your trails with other users
 ## How to use :thinking:
 
 Steps to run backend:
+
 1. Change to backend directory `cd backend`
 2. Run `npm i` command
 3. Setup database settings inside `ormconfig.json` file
