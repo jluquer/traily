@@ -1,13 +1,7 @@
-import {
-  Column,
-  Entity,
-  Index,
-  JoinColumn,
-  ManyToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 import { Challenge } from "./Challenge";
+import { IsNotEmpty } from "class-validator";
 
 @Index("userId", ["userId", "challengeId"], { unique: true })
 @Index("challengeId", ["challengeId"], {})
@@ -17,6 +11,7 @@ export class ChallengeComment {
   challengeCommentId: number;
 
   @Column("text", { name: "comment" })
+  @IsNotEmpty()
   comment: string;
 
   @Column("int", { name: "userId" })

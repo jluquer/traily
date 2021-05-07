@@ -8,6 +8,7 @@ import {
 } from "typeorm";
 import { User } from "./User";
 import { Trail } from "./Trail";
+import { IsNotEmpty } from "class-validator";
 
 @Index("userId", ["userId", "trailId"], { unique: true })
 @Index("trailId", ["trailId"], {})
@@ -17,6 +18,7 @@ export class TrailComment {
   trailCommentId: number;
 
   @Column("text", { name: "comment" })
+  @IsNotEmpty()
   comment: string;
 
   @Column("int", { name: "userId" })
