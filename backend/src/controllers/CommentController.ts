@@ -68,7 +68,7 @@ export default class CommentController {
     try {
       return res.json(
         await getRepository(ChallengeComment).find({
-          where: { trailId: +req.header("challengeId") },
+          where: { challengeId: +req.header("challengeId") },
           relations: ["user"],
         })
       );
