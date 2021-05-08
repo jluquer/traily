@@ -31,4 +31,8 @@ export default class StorageHelper {
       return path.resolve(file);
     }
   }
+
+  static fileExists(filename: string): boolean {
+    return fs.existsSync(`${StorageHelper.dir}/${filename}`);
+  }
 }
