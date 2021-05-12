@@ -1,33 +1,30 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
-  <input
-    name="email"
-    type="email"
-    formControlName="email"
-    placeholder="Email"
-  />
-  <div *ngIf="email && ((email.invalid && email.touched) || email.dirty) && displayError.email">
-    <small *ngIf="email.errors?.required" class="text-danger"
-      >Email is required.
-    </small>
-    <small *ngIf="email.errors?.pattern" class="text-danger"
-      >Please provide a valid email address.
-    </small>
-  </div>
+<div class="container-full bg-forest">
+  <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="form-login">
+    <h1>User Login</h1>
+    <div class="form-control">
+      <input name="email" type="email" formControlName="email" placeholder="Email" />
+      <div *ngIf="email && (email.invalid  || email.dirty) && displayError.email">
+        <small *ngIf="email.errors?.required" class="text-danger">
+          Email is required.
+        </small>
+        <small *ngIf="email.errors?.pattern" class="text-danger">
+          Please provide a valid email address.
+        </small>
+      </div>
+    </div>
 
-  <input
-    name="password"
-    type="password"
-    formControlName="password"
-    placeholder="Password"
-    class="form-control"
-  />
-  <div
-    *ngIf="
-      password && ((password.invalid && password.touched) || password.dirty) && displayError.password
-    "
-  >
-    <small *ngIf="password.errors?.required"> Password is required </small>
-  </div>
+    <div class="form-control">
+      <input name="password" type="password" formControlName="password" placeholder="Password" />
+      <div *ngIf="password && (password.invalid || password.dirty) && displayError.password">
+        <small *ngIf="password.errors?.required">
+          Password is required
+        </small>
+      </div>
+    </div>
 
-  <button type="submit">Login</button>
-</form>
+    <div class="align-center">
+      <button type="submit" class="btn btn-success">Login</button>
+    </div>
+    <a [routerLink]="['/signup']">Create your account</a>
+  </form>
+</div>

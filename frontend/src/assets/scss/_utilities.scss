@@ -1,0 +1,12 @@
+.container-full {
+  height: 100vh;
+  width: 100%;
+  @include flex();
+}
+
+.bg-forest {
+  background-image: url("../images/forest.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

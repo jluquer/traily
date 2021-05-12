@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -16,13 +17,25 @@ export class LoginComponent implements OnInit {
   });
   displayError: any = { email: false, password: false };
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {}
 
   onSubmit() {
-    this.displayAllErrors();
-    console.log(this.loginForm.get('email'));
+    this.displayErrors();
+    if (
+      this.email &&
+      this.email.valid &&
+      this.password &&
+      this.password.valid
+    ) {
+      this.authService.login(this.email.value, this.password.value).subscribe(
+        (_data) => {},
+        (_err) => {
+          this.displayErrors(false);
+        }
+      );
+    }
   }
 
   get email() {
@@ -33,9 +46,9 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  displayAllErrors() {
+  displayErrors(display = true) {
     Object.keys(this.displayError).map(
-      (key: string) => (this.displayError[key] = true)
+      (key: string) => (this.displayError[key] = display)
     );
   }
 }
