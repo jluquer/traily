@@ -1,0 +1,36 @@
+nav {
+  height: auto;
+  width: 100%;
+  background: white;
+  border-bottom: 1px solid #ccc;
+  box-shadow: 0 0 6px $gray-800;
+  border-top: 5px solid $green-3;
+  padding: 1.5rem 0.5rem;
+
+  #logo {
+    @include flex;
+    margin-bottom: 0.2rem;
+  }
+
+  #nav-links {
+    @include flex();
+    flex-wrap: wrap;
+    .nav-link {
+      margin: 0.3rem 0.5rem 0.3rem 0.5rem;
+      cursor: pointer;
+      transition: 300ms all;
+      &:hover {
+        color: $green-5
+      }
+      &.active {
+        border-bottom: 2px solid $green-3;
+      }
+    }
+  }
+}
+
+@include media("md") {
+  header {
+    @include flex(space-around)
+  }
+}
