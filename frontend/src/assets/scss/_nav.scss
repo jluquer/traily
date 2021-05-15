@@ -18,6 +18,8 @@ nav {
     .nav-link {
       margin: 0.3rem 0.5rem 0.3rem 0.5rem;
       cursor: pointer;
+      display: block;
+      color: $black;
       transition: 300ms all;
       &:hover {
         color: $green-5
@@ -30,7 +32,7 @@ nav {
 }
 
 @include media("md") {
-  header {
+  nav {
     @include flex(space-around)
   }
 }
