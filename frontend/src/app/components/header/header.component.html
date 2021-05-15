@@ -1,0 +1,12 @@
+<header *ngIf="isLogged">
+  <nav>
+    <div id="logo"><img src="assets/images/logo-dark.png" alt=""></div>
+    <div id="nav-links">
+      <div [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="nav-link">Dashboard</div>
+      <div [routerLink]="['/trails']" [routerLinkActive]="['active']" class="nav-link">Trails</div>
+      <div [routerLink]="['/profile']" [routerLinkActive]="['active']" class="nav-link">Profile</div>
+      <div [routerLink]="['/challenges']" [routerLinkActive]="['active']" class="nav-link">Challenges</div>
+      <div class="nav-link" (click)="logout()">Logout</div>
+    </div>
+  </nav>
+</header>

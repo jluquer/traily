@@ -17,7 +17,9 @@ export class UserInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const authToken = this.authService.getToken();
-    if (this.requiresAuthorization(req.url) && this.authService.isLogged)
+    let isLogged = this.authService.isLogged$.getValue();
+
+    if (this.requiresAuthorization(req.url) && isLogged)
       req.headers.set('Authorization', `Bearer ${authToken}`);
 
     return next.handle(req);
