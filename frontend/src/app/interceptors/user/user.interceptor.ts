@@ -4,9 +4,11 @@ import {
   HttpHandler,
   HttpEvent,
   HttpInterceptor,
+  HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class UserInterceptor implements HttpInterceptor {
@@ -17,12 +19,20 @@ export class UserInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const authToken = this.authService.getToken();
-    let isLogged = this.authService.isLogged$.getValue();
 
-    if (this.requiresAuthorization(req.url) && isLogged)
-      req.headers.set('Authorization', `Bearer ${authToken}`);
+    if (this.requiresAuthorization(req.url)) {
+      req = req.clone({
+        setHeaders: {
+          authorization: `Bearer ${authToken}`,
+        },
+      });
+    }
 
-    return next.handle(req);
+    return next.handle(req).pipe(
+      catchError((err: HttpErrorResponse) => {
+        return throwError(err);
+      })
+    );
   }
 
   private requiresAuthorization(url: string): boolean {

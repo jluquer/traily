@@ -44,6 +44,13 @@ export class AuthService implements OnDestroy {
     return !isExpired;
   }
 
+  getUserIdFromToken(): number {
+    const token = this.getToken() ?? undefined;
+    const decodedToken = this.helper.decodeToken(token);
+
+    return decodedToken.userId;
+  }
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }

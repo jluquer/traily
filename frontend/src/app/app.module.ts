@@ -10,6 +10,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { UserInterceptor } from './interceptors/user/user.interceptor';
 import { HeaderComponent } from './components/header/header.component';
+import { TrailListComponent } from './components/trail-list/trail-list.component';
+import { MomentModule } from 'angular2-moment';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { HeaderComponent } from './components/header/header.component';
     SignUpComponent,
     DashboardComponent,
     HeaderComponent,
+    TrailListComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { HeaderComponent } from './components/header/header.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MomentModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true },

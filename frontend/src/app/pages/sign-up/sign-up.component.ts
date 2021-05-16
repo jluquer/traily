@@ -43,7 +43,7 @@ export class SignUpComponent implements OnInit {
         .createUser({
           email: this.email.value,
           password: this.password.value,
-          name: `${this.firstName} ${this.lastName}`,
+          name: `${this.firstName.value} ${this.lastName.value}`,
         })
         .subscribe(
           (_data) => {
