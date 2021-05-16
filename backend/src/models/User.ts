@@ -1,4 +1,4 @@
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, getRepository, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Trail } from "./Trail";
 import { TrailReview } from "./TrailReview";
 import { Follow } from "./Follow";
@@ -55,7 +55,15 @@ export class User {
     this.password = bcrypt.hashSync(this.password, salt);
   }
 
-  checkPassword(password): boolean {
+  checkPassword(password: string): boolean {
     return bcrypt.compareSync(password, this.password);
+  }
+
+  static async getFollowing(userId: number) {
+    const users = await getRepository(Follow).find({
+      where: { followerUserId: userId },
+      relations: ["user"],
+    });
+    return users.map((user) => user.user);
   }
 }

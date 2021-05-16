@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne } from "typeorm";
 import { User } from "./User";
 import { Trail } from "./Trail";
 import { IsNotEmpty, Max, Min } from "class-validator";
@@ -17,6 +17,10 @@ export class TrailReview {
   @Min(1)
   @Max(5)
   rating: number;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 
   @Column("text", { name: "review", nullable: true })
   review: string;

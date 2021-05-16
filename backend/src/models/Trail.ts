@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   JoinColumn,
@@ -20,7 +21,8 @@ export class Trail {
   @PrimaryGeneratedColumn({ type: "int", name: "trailId" })
   trailId: number;
 
-  @Column("text", { name: "description", nullable: true })
+  @Column("text", { name: "description" })
+  @IsNotEmpty()
   description: string | null;
 
   @Column("int", { name: "distance", nullable: true })
@@ -62,6 +64,10 @@ export class Trail {
 
   @Column("int", { name: "userId" })
   userId: number;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 
   @ManyToOne(() => Activity, (activity) => activity.trails, {
     onDelete: "RESTRICT",

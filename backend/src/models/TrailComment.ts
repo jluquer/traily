@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   Index,
   JoinColumn,
@@ -26,6 +27,10 @@ export class TrailComment {
 
   @Column("int", { name: "trailId" })
   trailId: number;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.trailComments, {
     onDelete: "RESTRICT",
