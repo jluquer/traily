@@ -1,4 +1,4 @@
-#dashboard {
+.container {
   padding: 0 0.6rem;
 
   #trail-list {
@@ -21,23 +21,5 @@
     .trail-description {
       padding: 1rem;
     }
-  }
-}
-@include media("sm") {
-  #dashboard {
-    padding: 0 2rem 0 2rem;
-  }
-}
-@include media("lg") {
-  #trail-list {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-@include media("xl") {
-  #trail-list {
-    width: 60%;
-    margin: 0 auto;
   }
 }

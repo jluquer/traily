@@ -12,6 +12,7 @@ import { UserInterceptor } from './interceptors/user/user.interceptor';
 import { HeaderComponent } from './components/header/header.component';
 import { TrailListComponent } from './components/trail-list/trail-list.component';
 import { MomentModule } from 'angular2-moment';
+import { TrailsComponent } from './pages/trails/trails.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MomentModule } from 'angular2-moment';
     DashboardComponent,
     HeaderComponent,
     TrailListComponent,
+    TrailsComponent,
   ],
   imports: [
     BrowserModule,

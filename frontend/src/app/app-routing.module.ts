@@ -5,6 +5,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { CheckLoginGuard } from './guards/check-login/check-login.guard';
 import { LoggedGuard } from './guards/logged/logged.guard';
+import { TrailsComponent } from './pages/trails/trails.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
@@ -19,6 +20,7 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [LoggedGuard],
   },
+  { path: 'trails', component: TrailsComponent, canActivate: [LoggedGuard] },
 ];
 
 @NgModule({
