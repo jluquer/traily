@@ -8,10 +8,12 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HeaderComponent implements OnInit {
   isLogged: boolean | null = null;
+  userId?: number;
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.authService.isLogged$.subscribe((logged) => (this.isLogged = logged));
+    this.userId = this.authService.getLoggedUserId();
   }
 
   logout() {

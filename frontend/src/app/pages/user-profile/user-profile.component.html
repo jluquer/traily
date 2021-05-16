@@ -1,4 +1,33 @@
 <div class="container">
   <h1 class="page-title">User Profile</h1>
-  <p>user-profile works!</p>
+
+  <div id="user-profile" *ngIf="user" class="card">
+    <div class="card-header bg-blue">
+      <h6>{{ followers && followers.length }} Followers</h6>
+      <h6 class="m-0">{{ following && following.length }} Following</h6>
+    </div>
+    <div class="card-body grid text-center">
+      <div class="col">
+        <h5 class="col-title">Name</h5>
+        <p>
+          {{ user.name }}
+        </p>
+      </div>
+      <div class="col">
+        <h5 class="col-title">Email</h5>
+        <p>
+          {{ user.email }}
+        </p>
+      </div>
+    </div>
+  </div>
+  <h3 class="text-center subtitle">Trails uploaded</h3>
+
+  <ng-template *ngIf="trails && trails.length > 0; else upload">
+    <app-trail-list [trails]="trails"></app-trail-list>
+  </ng-template>
+
+  <ng-template #upload>
+    <p class="text-center">Upload a trail!</p>
+  </ng-template>
 </div>

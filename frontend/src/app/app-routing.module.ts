@@ -23,7 +23,7 @@ const routes: Routes = [
   },
   { path: 'trails', component: TrailsComponent, canActivate: [LoggedGuard] },
   {
-    path: 'profile',
+    path: 'profile/:userId',
     component: UserProfileComponent,
     canActivate: [LoggedGuard],
   },
