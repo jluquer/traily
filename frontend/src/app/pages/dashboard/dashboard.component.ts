@@ -12,9 +12,9 @@ export class DashboardComponent implements OnInit {
   constructor(private trailService: TrailService) {}
 
   ngOnInit(): void {
-    this.trailService.getDashboardTrails().subscribe((trails) => {
-      this.trails = trails;
-    });
-
+    this.trailService.getDashboardTrails().subscribe(
+      (trails) => (this.trails = trails),
+      () => {}
+    );
   }
 }
