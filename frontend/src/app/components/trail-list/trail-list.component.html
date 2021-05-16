@@ -10,8 +10,14 @@
     </div>
     <div class="card-body">
       <div class="trail-info">
-        <p><i class="fas fa-mountain"></i>{{ trail.activity && trail.activity.activity | titlecase }}</p>
-        <p><i class="fas fa-globe-africa"></i>{{ trail.province }}, {{ trail.city }}</p>
+        <p>
+          <i class="fas fa-mountain"></i>
+          {{ trail.activity && trail.activity.activity | titlecase }}
+        </p>
+        <p>
+          <i class="fas fa-globe-africa"></i>{{ trail.province }},
+          {{ trail.city }}
+        </p>
       </div>
       <p class="trail-description">
         {{ trail.description }}
@@ -30,8 +36,7 @@
 </div>
 
 <ng-template #loading>
-  <h6>
-    There aren't trails to display. Follow some users too see the trails the
-    upload!
-  </h6>
+  <div class="container">
+    <p class="text-center">Oops... We didn't find any trail. You can upload one!</p>
+  </div>
 </ng-template>
