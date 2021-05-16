@@ -1,4 +1,4 @@
-import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./User";
 import { Challenge } from "./Challenge";
 import { IsNotEmpty } from "class-validator";
@@ -19,6 +19,10 @@ export class ChallengeComment {
 
   @Column("int", { name: "challengeId" })
   challengeId: number;
+
+  @Column()
+  @CreateDateColumn()
+  createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.challengeComments, {
     onDelete: "RESTRICT",

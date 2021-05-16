@@ -32,7 +32,7 @@ export default class TrailController {
 
   static async getAll(req: Request, res: Response): Promise<Response> {
     try {
-      return res.json(await getRepository(Trail).find());
+      return res.json(await getRepository(Trail).find({ relations: ["user", "activity"] }));
     } catch (err) {
       return res.status(400).json({ status: "error" });
     }
@@ -114,6 +114,33 @@ export default class TrailController {
       res.download(StorageHelper.getFile(trailFilepath.toString()));
     } catch (err) {
       return res.status(404).json({ status: "error" });
+    }
+  }
+
+  static async getDashboardTrails(req: Request, res: Response): Promise<Response> {
+    const usersFollowing = await User.getFollowing(+res.locals.payload.userId);
+    let trails = [];
+
+    for (let i = 0; i < usersFollowing.length; i++) {
+      const user = usersFollowing[i];
+      trails = trails.concat(
+        await getRepository(Trail).find({ where: { user }, relations: ["activity", "user"] })
+      );
+    }
+
+    return res.json(trails);
+  }
+
+  static async getAllByUserId(req: Request, res: Response): Promise<Response> {
+    try {
+      return res.json(
+        await getRepository(Trail).find({
+          where: { userId: +res.locals.payload.userId },
+          relations: ["activity", "user"],
+        })
+      );
+    } catch (err) {
+      return res.status(400).json({ status: "error" });
     }
   }
 }

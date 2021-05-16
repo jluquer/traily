@@ -145,27 +145,25 @@ export default class UserController {
     }
   };
 
-  getFollowing = async (req: Request, res: Response) => {
+  async getFollowing(req: Request, res: Response): Promise<Response> {
     try {
-      const user = await getRepository(User).findOneOrFail(res.locals.payload.userId, {
-        relations: ["follows"],
-      });
-      res.json(user.follows);
+      return res.json(await User.getFollowing(+res.locals.payload.userId));
     } catch (err) {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
-  };
+  }
 
-  getFollowers = async (req: Request, res: Response) => {
+  async getFollowers(req: Request, res: Response): Promise<Response> {
     try {
-      const user = await getRepository(User).findOneOrFail(res.locals.payload.userId, {
-        relations: ["followers"],
+      const users = await getRepository(Follow).find({
+        where: { userId: +res.locals.payload.userId },
+        relations: ["followerUser"],
       });
-      res.json(user.followers);
+      return res.json(users.map((user) => user.followerUser));
     } catch (err) {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
-  };
+  }
 
   search = async (req: Request, res: Response) => {
     try {
