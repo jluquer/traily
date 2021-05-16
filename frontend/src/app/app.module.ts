@@ -13,6 +13,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { TrailListComponent } from './components/trail-list/trail-list.component';
 import { MomentModule } from 'angular2-moment';
 import { TrailsComponent } from './pages/trails/trails.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { TrailsComponent } from './pages/trails/trails.component';
     HeaderComponent,
     TrailListComponent,
     TrailsComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

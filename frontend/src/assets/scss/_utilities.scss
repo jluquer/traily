@@ -11,13 +11,43 @@
   background-repeat: no-repeat;
 }
 
+.bg-blue {
+  background-color: $blue !important;
+  color: $white;
+}
+
 .page-title {
   text-align: center;
   font-size: 4rem;
-  letter-spacing: 10px;
+  letter-spacing: 5px;
   margin: 2rem 0;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 2.5rem;
+  letter-spacing: 5px;
+  margin: 5rem 0 2rem 0;
 }
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  .col-title {
+    margin: 0.1rem 0;
+    padding: 0.5rem 0.2rem;
+  }
+}
+
+.m-0 {
+  margin: 0;
 }

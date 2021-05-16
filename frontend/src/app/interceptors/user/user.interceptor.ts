@@ -8,7 +8,7 @@ import {
 } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { catchError } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class UserInterceptor implements HttpInterceptor {
@@ -30,6 +30,7 @@ export class UserInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
+        console.log(err);
         return throwError(err);
       })
     );

@@ -11,7 +11,7 @@
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
-          <a [routerLink]="['/profile']" [routerLinkActive]="['active']">Profile</a>
+          <a [routerLink]="['/profile', userId]" [routerLinkActive]="['active']">Profile</a>
           <a (click)="logout()">Logout</a>
         </div>
       </div>

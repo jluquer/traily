@@ -6,6 +6,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { CheckLoginGuard } from './guards/check-login/check-login.guard';
 import { LoggedGuard } from './guards/logged/logged.guard';
 import { TrailsComponent } from './pages/trails/trails.component';
+import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
@@ -21,6 +22,11 @@ const routes: Routes = [
     canActivate: [LoggedGuard],
   },
   { path: 'trails', component: TrailsComponent, canActivate: [LoggedGuard] },
+  {
+    path: 'profile/:userId',
+    component: UserProfileComponent,
+    canActivate: [LoggedGuard],
+  },
 ];
 
 @NgModule({

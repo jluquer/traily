@@ -44,10 +44,10 @@ export class AuthService implements OnDestroy {
     return !isExpired;
   }
 
-  getUserIdFromToken(): number {
+  getLoggedUserId(): number | undefined {
     const token = this.getToken() ?? undefined;
     const decodedToken = this.helper.decodeToken(token);
-
+    if (!decodedToken) return undefined;
     return decodedToken.userId;
   }
 
