@@ -12,8 +12,8 @@ export class TrailService {
   constructor(private http: HttpClient) {}
 
   /**
-   * Get all trails from the users you are following. If you don't follow any user
-   * it will return an empty array.
+   * Get all trails from the users you are following ordered by date. If you don't 
+   * follow any user it will return an empty array.
    *
    * @returns {Observable<any>}
    */
