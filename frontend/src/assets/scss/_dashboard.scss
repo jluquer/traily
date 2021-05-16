@@ -1,0 +1,43 @@
+#dashboard {
+  padding: 0 0.6rem;
+
+  #trail-list {
+    .card {
+      margin-top: 2rem;
+    }
+
+    .trail-info {
+      @include flex(space-between);
+      flex-wrap: wrap;
+      font-size: 0.8rem;
+      p {
+        margin-bottom: 0;
+      }
+      padding: 0 1rem 0.5rem 1rem;
+      margin-bottom: 0.5rem;
+      border-bottom: 1px solid $gray-200;
+    }
+
+    .trail-description {
+      padding: 1rem;
+    }
+  }
+}
+@include media("sm") {
+  #dashboard {
+    padding: 0 2rem 0 2rem;
+  }
+}
+@include media("lg") {
+  #trail-list {
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+@include media("xl") {
+  #trail-list {
+    width: 60%;
+    margin: 0 auto;
+  }
+}
