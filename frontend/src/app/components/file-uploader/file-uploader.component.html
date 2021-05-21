@@ -1,0 +1,32 @@
+<div id="fileUploader" *ngIf="!status && !filepath">
+  <div #dragArea id="drag">
+    <input type="file" name="file" accept="application/gpx+xml" #fileInput (change)="handleInput($event)">
+    <img src="assets/images/image.svg" alt="default image">
+    <p>Drag & Drop your GPX file here</p>
+  </div>
+  <p id="or">or</p>
+  <label for="file" (click)="fileInput.click()" class="btn btn-primary">Choose a file</label>
+</div>
+
+
+<div id="uploading" *ngIf="status == 'uploading'">
+  <p>Uploading file...</p>
+  <div id="loading-bar">
+    <div></div>
+  </div>
+</div>
+
+<ng-container *ngIf="status == 'success' || filepath">
+  <div class="complete">
+    <p class="alert alert-success">{{filepath}}</p>
+    <button class="btn btn-primary" (click)="resetStatus()">Change</button>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="status == 'failed'">
+  <div class="complete">
+    <p class="alert alert-danger">File could not be uploaded!</p>
+    <button class="btn btn-primary" (click)="resetStatus()">Try again</button>
+  </div>
+
+</ng-container>

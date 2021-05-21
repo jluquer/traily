@@ -3,15 +3,32 @@
     <div class="card-header">
       <h6>{{ trail.name }}</h6>
       <div class="user">
-        <small *ngIf="trail.user">
-          <i class="far fa-user"></i>{{ trail.user.name }}
-        </small>
+        <ng-container *ngIf="trail.trailId && trail.user?.name === username; else trailCreator">
+          <div class="buttons">
+            <a [routerLink]="['/trail/edit/', trail.trailId]" class="btn btn-warning">
+              <i class="fas fa-edit"></i>
+            </a>
+            <button class="btn btn-danger" (click)="deleteTrail(trail.trailId)">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+        </ng-container>
+        <ng-template #trailCreator>
+          <small *ngIf="trail.user">
+            <i class="far fa-user"></i>{{ trail.user.name }}
+          </small>
+        </ng-template>
       </div>
     </div>
     <div class="card-body">
       <div class="trail-info">
-        <p><i class="fas fa-mountain"></i>{{ trail.activity && trail.activity.activity | titlecase }}</p>
-        <p><i class="fas fa-globe-africa"></i>{{ trail.province }}, {{ trail.city }}</p>
+        <p>
+          <i class="fas fa-mountain"></i>{{ trail.activity && trail.activity.activity | titlecase }}
+        </p>
+        <p>
+          <i class="fas fa-globe-africa"></i>{{ trail.province }},
+          {{ trail.city }}
+        </p>
       </div>
       <p class="trail-description">
         {{ trail.description }}
@@ -19,11 +36,13 @@
     </div>
     <div class="card-footer">
       <div class="card-links">
-        <a (click)="trailInfo(trail.trailId)">see more</a>
+        <a [routerLink]="['/trail', trail.trailId]">see more</a>
         <a>comments</a>
       </div>
       <div class="created-at">
-        <small>{{ trail.createdAt | amTimeAgo }}</small>
+        <small *ngIf="trail && trail.createdAt">
+          {{ trail.createdAt | amTimeAgo }}
+        </small>
       </div>
     </div>
   </div>
@@ -31,8 +50,6 @@
 
 <ng-template #loading>
   <div class="container">
-    <p class="text-center">
-      Oops... We didn't find any trail!
-    </p>
+    <p class="text-center">Oops... We didn't find any trail!</p>
   </div>
 </ng-template>

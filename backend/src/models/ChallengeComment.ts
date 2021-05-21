@@ -25,15 +25,15 @@ export class ChallengeComment {
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.challengeComments, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   user: User;
 
   @ManyToOne(() => Challenge, (challenge) => challenge.challengeComments, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "challengeId", referencedColumnName: "challengeId" }])
   challenge: Challenge;

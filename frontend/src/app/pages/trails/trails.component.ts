@@ -12,6 +12,10 @@ export class TrailsComponent implements OnInit {
   constructor(private trailService: TrailService) {}
 
   ngOnInit(): void {
+    this.getTrails();
+  }
+
+  getTrails() {
     this.trailService.getAllTrails().subscribe(
       (trails) => (this.trails = trails),
       () => {}

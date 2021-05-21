@@ -4,7 +4,6 @@ nav {
   background: white;
   border-bottom: 1px solid #ccc;
   box-shadow: 0 0 6px $gray-800;
-  border-top: 5px solid $green-3;
   padding: 1.5rem 0.5rem;
 
   #logo {
@@ -72,5 +71,11 @@ nav {
 @include media("md") {
   nav {
     @include flex(space-around);
+  }
+}
+
+@media (max-width: 440px) {
+  .dropdown-content {
+    right: 10%;
   }
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import Trail from 'src/app/models/trail';
 import { environment } from 'src/environments/environment';
 import { AuthService } from '../auth/auth.service';
 
@@ -48,7 +49,7 @@ export class TrailService {
   /**
    * Get all trails stored in database ordered by date. Older trails will be
    * at the end of the array.
-   * 
+   *
    * @returns {Observable<any>}
    */
   getAllTrails(): Observable<any> {
@@ -59,5 +60,60 @@ export class TrailService {
         })
       )
     );
+  }
+
+  /**
+   * Get a trail from database by trailId
+   *
+   * @param id {number}
+   * @returns {Observable<any>}
+   */
+  getOneById(id: number): Observable<any> {
+    const trailId = String(id);
+    return this.http.get(this.trailUrl + this.getOneById.name, {
+      headers: { id: trailId },
+    });
+  }
+
+  /**
+   * Create a new trail
+   *
+   * @param trail {Trail}
+   * @returns {Observable<any>}
+   */
+  create(trail: Trail): Observable<any> {
+    return this.http.post(this.trailUrl + 'create', trail);
+  }
+
+  /**
+   * Update a trail
+   *
+   * @param trail {Trail}
+   * @returns
+   */
+  update(trail: Trail): Observable<any> {
+    return this.http.put(this.trailUrl + 'update', trail, {
+      headers: { id: String(trail.trailId) },
+    });
+  }
+
+  /**
+   * Uploads a file to the server.
+   *
+   * @param file {File}
+   * @returns {Observable<any>}
+   */
+  uploadFile(file: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('file0', file);
+    return this.http.post(this.trailUrl + 'upload', formData);
+  }
+
+  delete(trailId: number) {
+    return this.http.delete(this.trailUrl + 'delete', {
+      headers: {
+        id: String(trailId),
+      },
+    });
   }
 }

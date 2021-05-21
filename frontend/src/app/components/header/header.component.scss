@@ -1,2 +1,20 @@
-
-
+@import "src/assets/scss/index.scss";
+$round: 45px;
+.dropdown {
+  button {
+    display: inline-flex !important;
+    align-items: center;
+    i:nth-child(2) {
+      margin-left: 3px;
+      color: $green-6;
+    }
+    .rounded-icon {
+      border-radius: 50%;
+      width: $round;
+      height: $round;
+      @include flex();
+      color: white;
+      background-color: $green-5;
+    }
+  }
+}

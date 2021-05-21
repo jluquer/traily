@@ -1,16 +1,20 @@
 <header *ngIf="isLogged">
   <nav>
-    <div id="logo"><img src="assets/images/logo-dark.png" alt="" /></div>
+    <div id="logo">
+      <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="nav-link">
+        <img src="assets/images/logo-dark.png" alt="" />
+      </a>
+    </div>
     <div id="nav-links">
-      <a [routerLink]="['/dashboard']" [routerLinkActive]="['active']" class="nav-link">Dashboard</a>
       <a [routerLink]="['/trails']" [routerLinkActive]="['active']" class="nav-link">Trails</a>
       <a [routerLink]="['/challenges']" [routerLinkActive]="['active']" class="nav-link">Challenges</a>
       <div class="dropdown">
         <button class="dropbtn nav-link">
-          User
+          <div class="rounded-icon"><i class="fa fa-user"></i></div>
           <i class="fa fa-caret-down"></i>
         </button>
         <div class="dropdown-content">
+          <a [routerLink]="['/trail/create']" [routerLinkActive]="['active']">Create Trail</a>
           <a [routerLink]="['/profile', userId]" [routerLinkActive]="['active']">Profile</a>
           <a (click)="logout()">Logout</a>
         </div>

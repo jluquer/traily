@@ -1,4 +1,4 @@
 <div class="container">
   <h1 class="page-title">Trails</h1>
-  <app-trail-list [trails]="trails"></app-trail-list>
+  <app-trail-list [trails]="trails" (trailDeleted)="getTrails()"></app-trail-list>
 </div>
