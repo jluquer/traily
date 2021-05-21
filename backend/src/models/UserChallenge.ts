@@ -17,16 +17,16 @@ export class UserChallenge {
   status: string;
 
   @ManyToOne(() => User, (user) => user.userChallenges, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   @IsNotEmpty()
   user: User;
 
   @ManyToOne(() => Challenge, (challenge) => challenge.userChallenges, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "challengeId", referencedColumnName: "challengeId" }])
   @IsNotEmpty()

@@ -33,15 +33,15 @@ export class TrailComment {
   createdAt: Date;
 
   @ManyToOne(() => User, (user) => user.trailComments, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   user: User;
 
   @ManyToOne(() => Trail, (trail) => trail.trailComments, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "trailId", referencedColumnName: "trailId" }])
   trail: Trail;

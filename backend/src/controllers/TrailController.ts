@@ -1,6 +1,6 @@
 import { env } from "../environment";
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
 import { validate } from "class-validator";
 import EntityHelper from "../libs/EntityHelper";
 import { Activity } from "../models/Activity";
@@ -80,7 +80,12 @@ export default class TrailController {
       const trailRepository = getRepository(Trail);
       const trail = await trailRepository.findOneOrFail(+req.headers.id);
       if (trail.trailFilepath) StorageHelper.deleteFile(trail.trailFilepath);
-      await trailRepository.delete(trail);
+      await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(Trail)
+        .where("trailId = :id", { id: trail.trailId })
+        .execute();
       return res.status(201).json({ status: "success" });
     } catch (err) {
       return res.status(404).json({ status: "error" });

@@ -70,16 +70,16 @@ export class Trail {
   createdAt: Date;
 
   @ManyToOne(() => Activity, (activity) => activity.trails, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "activityId", referencedColumnName: "activityId" }])
   @IsNotEmpty()
   activity: Activity;
 
   @ManyToOne(() => User, (user) => user.trails, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   @IsNotEmpty()

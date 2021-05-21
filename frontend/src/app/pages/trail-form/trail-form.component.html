@@ -1,0 +1,107 @@
+<div class="full bg-green">
+  <div class="container">
+    <h1 class="page-title">{{ edit ? "Edit Trail" : "Create Trail" }}</h1>
+
+    <form (ngSubmit)="onSubmit()" #trailForm="ngForm">
+      <div class="form-control">
+        <input type="text" name="name" [(ngModel)]="trail.name" #name="ngModel" required />
+        <label for="name">trail name*</label>
+        <ng-container *ngIf="!name.valid && (name.touched || submitted)">
+          <small>Trail name is required.</small>
+        </ng-container>
+      </div>
+
+      <div class="form-control">
+        <label for="description">Description*</label>
+        <textarea type="text" name="description" [(ngModel)]="trail.description" #description="ngModel" required></textarea>
+        <ng-container *ngIf="!description.valid && (description.touched || submitted)">
+          <small>Description is required.</small>
+        </ng-container>
+      </div>
+
+      <div class="form-control">
+        <label for="difficulty">difficulty*</label>
+        <input type="range" min="1" max="5" name="difficulty" list="difficulty" [(ngModel)]="trail.difficulty" #difficulty="ngModel" required />
+        <ng-container *ngIf="!difficulty.valid && (difficulty.touched || submitted)">
+          <small>Difficulty is required.</small>
+        </ng-container>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control">
+          <input type="number" name="distance" [(ngModel)]="trail.distance" #distance="ngModel" required />
+          <label for="distance">Distance* (km)</label>
+          <ng-container *ngIf="!distance.valid && (distance.touched || submitted)">
+            <small>Distance is required.</small>
+          </ng-container>
+        </div>
+
+
+
+        <div class="form-control">
+          <input type="number" name="elevGain" [(ngModel)]="trail.elevGain" #elevGain="ngModel" required />
+          <label for="elevGain">Elevation gain* (km)</label>
+          <ng-container *ngIf="!elevGain.valid && (elevGain.touched || submitted)">
+            <small>Elevation gain is required.</small>
+          </ng-container>
+        </div>
+
+        <ng-container *ngIf="activities">
+          <div class="form-control">
+            <select name="activity" [(ngModel)]="trail.activityId" #activity="ngModel" required>
+              <option *ngFor="let activity of activities" value="{{activity.activityId}}">
+                {{activity.activity}}
+              </option>
+            </select>
+            <label for="activity">Activity*</label>
+            <ng-container *ngIf="!activity.valid && (activity.touched || submitted)">
+              <small>Activity is required.</small>
+            </ng-container>
+          </div>
+        </ng-container>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control">
+          <input type="text" name="country" [(ngModel)]="trail.country" #country="ngModel" required />
+          <label for="country">Country*</label>
+          <ng-container *ngIf="!country.valid && (country.touched || submitted)">
+            <small>Country is required.</small>
+          </ng-container>
+        </div>
+
+        <div class="form-control">
+          <input type="text" name="province" [(ngModel)]="trail.province" #province="ngModel" required />
+          <label for="province">province*</label>
+          <ng-container *ngIf="!province.valid && (province.touched || submitted)">
+            <small>Province is required.</small>
+          </ng-container>
+        </div>
+
+        <div class="form-control">
+          <input type="text" name="city" [(ngModel)]="trail.city" #city="ngModel" required />
+          <label for="city">city*</label>
+          <ng-container *ngIf="!city.valid && (city.touched || submitted)">
+            <small>City is required.</small>
+          </ng-container>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="form-control">
+          <input type="number" name="elevMax" [(ngModel)]="trail.elevMax" />
+          <label for="elevMax">Maximum elevation (km)</label>
+        </div>
+
+        <div class="form-control">
+          <input type="number" name="elevMin" [(ngModel)]="trail.elevMin" />
+          <label for="elevMin">Minimum elevation (km)</label>
+        </div>
+      </div>
+
+      <app-file-uploader (filePathEvent)="getFilePath($event)" [filepath]="trail.trailFilepath"></app-file-uploader>
+
+      <input type="submit" class="btn btn-success" value="{{ edit ? 'Modify' : 'Create' }}" />
+    </form>
+  </div>
+</div>

@@ -24,7 +24,7 @@ $green-6: #474c3f !default;
 
 $primary: $blue !default;
 $secondary: $gray-600 !default;
-$success: $green-2 !default;
+$success: $green-3 !default;
 $info: $cyan !default;
 $warning: $yellow !default;
 $danger: $red !default;
@@ -42,6 +42,7 @@ $theme-colors: (
   "danger": $danger,
   "light": $light,
   "dark": $dark,
+  "green": $green-4
 ) !default;
 
 $breakpoints: (
@@ -53,5 +54,5 @@ $breakpoints: (
   xxl: 1400px,
 ) !default;
 
-$border-radius: 0.25rem;
+$border-radius: 4px;
 $card-radius: 0.5rem

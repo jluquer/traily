@@ -4,6 +4,15 @@
   @include flex();
 }
 
+.full {
+  height: 100;
+  width: 100%;
+}
+
+.bg-green {
+  background-color: $green-1;
+}
+
 .bg-forest {
   background-image: url("../images/forest.jpg");
   background-position: center;
@@ -20,7 +29,8 @@
   text-align: center;
   font-size: 4rem;
   letter-spacing: 5px;
-  margin: 2rem 0;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
 }
 
 .subtitle {
@@ -50,4 +60,17 @@
 
 .m-0 {
   margin: 0;
+}
+
+.alert {
+  padding: 1.5rem;
+  border-radius: $border-radius;
+}
+
+.alert-danger {
+  background-color: lighten($color: $red, $amount: 30);
+}
+
+.alert-success {
+  background-color: $green-1;
 }

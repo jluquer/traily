@@ -26,15 +26,15 @@ export class TrailReview {
   review: string;
 
   @ManyToOne(() => User, (user) => user.trailReviews, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "userId", referencedColumnName: "userId" }])
   user: User;
 
   @ManyToOne(() => Trail, (trail) => trail.trailReviews, {
-    onDelete: "RESTRICT",
-    onUpdate: "RESTRICT",
+    onDelete: "CASCADE",
+    onUpdate: "CASCADE",
   })
   @JoinColumn([{ name: "trailId", referencedColumnName: "trailId" }])
   trail: Trail;

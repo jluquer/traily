@@ -38,6 +38,10 @@ export class UserProfileComponent implements OnInit {
       () => {}
     );
 
+    this.getTrails();
+  }
+
+  getTrails() {
     this.trailService.getAllByUserId(this.userId).subscribe(
       (trails) => (this.trails = trails),
       () => {}

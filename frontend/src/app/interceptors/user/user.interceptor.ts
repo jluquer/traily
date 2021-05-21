@@ -30,7 +30,6 @@ export class UserInterceptor implements HttpInterceptor {
 
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
-        console.log(err);
         return throwError(err);
       })
     );

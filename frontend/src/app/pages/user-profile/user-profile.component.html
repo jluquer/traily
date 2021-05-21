@@ -24,7 +24,7 @@
   <h3 class="text-center subtitle">Trails uploaded</h3>
 
   <ng-template *ngIf="trails && trails.length > 0; else upload">
-    <app-trail-list [trails]="trails"></app-trail-list>
+    <app-trail-list [trails]="trails" (trailDeleted)="getTrails()"></app-trail-list>
   </ng-template>
 
   <ng-template #upload>
