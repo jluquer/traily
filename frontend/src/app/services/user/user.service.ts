@@ -16,6 +16,15 @@ export class UserService {
     return this.http.post(this.userUrl + 'create', user);
   }
 
+  /**
+   * Get all users from database
+   *
+   * @returns {Observable<any>}
+   */
+  getAll(): Observable<any> {
+    return this.http.get(this.userUrl + 'getAll');
+  }
+
   getOneById(userId: number): Observable<any> {
     return this.http.get(this.userUrl + this.getOneById.name, {
       headers: {
@@ -30,5 +39,51 @@ export class UserService {
 
   getFollowers(): Observable<any> {
     return this.http.get(this.userUrl + 'getFollowers');
+  }
+
+  /**
+   * Follow a user
+   *
+   * @param userId {number} User id you are going to follow
+   * @returns {Observable<any>}
+   */
+  follow(userId: number): Observable<any> {
+    return this.http.post(
+      this.userUrl + 'follow',
+      {},
+      {
+        headers: {
+          id: String(userId),
+        },
+      }
+    );
+  }
+
+  /**
+   * Unfollow a user
+   *
+   * @param userId {number} User id you are going to unfollow
+   * @returns {Observable<any>}
+   */
+  unfollow(userId: number): Observable<any> {
+    return this.http.delete(this.userUrl + 'unfollow', {
+      headers: {
+        id: String(userId),
+      },
+    });
+  }
+
+  /**
+   * Search users by their name
+   * 
+   * @param name {string}
+   * @returns {Observable<any>}
+   */
+  search(name: string): Observable<any> {
+    return this.http.get(this.userUrl + 'search', {
+      headers: {
+        name,
+      },
+    });
   }
 }

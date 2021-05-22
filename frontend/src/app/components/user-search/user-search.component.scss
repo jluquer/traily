@@ -1,0 +1,18 @@
+@import "src/assets/scss/index.scss";
+
+input {
+  width: 100%;
+  display: block;
+  margin-bottom: 1.5rem;
+  padding: 0.6rem;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  border: 2px solid $blue;
+  outline: none;
+
+  &::placeholder {
+    color: $gray-600;
+  }
+}
+
+

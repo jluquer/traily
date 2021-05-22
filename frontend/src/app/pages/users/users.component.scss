@@ -1,0 +1,11 @@
+@import "src/assets/scss/index.scss";
+
+.card {
+  margin-bottom: 1rem !important;
+  .card-header {
+    p {
+      margin: 0;
+    }
+    background-color: $gray-100 !important;
+  }
+}
