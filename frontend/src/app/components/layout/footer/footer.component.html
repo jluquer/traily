@@ -1,0 +1,10 @@
+<ng-container *ngIf="isLogged">
+  <footer>
+    <p>&copy; Javier Luque Rodríguez</p>
+    <div class="footer-links">
+      <a [routerLink]="['/trails']" [routerLinkActive]="['active']" class="nav-link">Trails</a>
+      <a [routerLink]="['/users']" [routerLinkActive]="['active']" class="nav-link">Users</a>
+      <a [routerLink]="['/trail/create']" [routerLinkActive]="['active']">Create Trail</a>
+    </div>
+  </footer>
+</ng-container>

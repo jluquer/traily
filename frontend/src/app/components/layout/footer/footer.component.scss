@@ -1,0 +1,31 @@
+@import "src/assets/scss/index.scss";
+
+footer {
+  min-height: $footer-h;
+  color: $white;
+  background-color: $dark;
+  padding: 4rem 0;
+
+  @include flex(space-around);
+  flex-wrap: wrap;
+  gap: 2rem;
+
+  p {
+    margin: 0;
+  }
+
+  .footer-links {
+    @include flex;
+    flex-direction: column;
+    a {
+      transition: color 500ms;
+      color: $green-1;
+      &:hover {
+        color: $green-2;
+      }
+    }
+    a:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+  }
+}
