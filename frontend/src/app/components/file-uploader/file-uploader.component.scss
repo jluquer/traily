@@ -70,7 +70,7 @@
 
 .complete {
   @include flex();
-  flex-wrap: wrap;
+  flex-direction: column;
   p {
     margin: 0;
   }
@@ -93,13 +93,6 @@
   .complete {
     max-width: 80%;
     margin: 0 auto;
-  }
-}
-
-@include media("xxl") {
-  .complete button {
-    margin-top: 0;
-    margin-left: 2rem;
   }
 }
 

@@ -40,7 +40,7 @@
 
         <div class="form-control">
           <input type="number" name="elevGain" [(ngModel)]="trail.elevGain" #elevGain="ngModel" required />
-          <label for="elevGain">Elevation gain* (km)</label>
+          <label for="elevGain">Elevation gain* (m)</label>
           <ng-container *ngIf="!elevGain.valid && (elevGain.touched || submitted)">
             <small>Elevation gain is required.</small>
           </ng-container>
@@ -90,12 +90,12 @@
       <div class="form-group">
         <div class="form-control">
           <input type="number" name="elevMax" [(ngModel)]="trail.elevMax" />
-          <label for="elevMax">Maximum elevation (km)</label>
+          <label for="elevMax">Maximum elevation (m)</label>
         </div>
 
         <div class="form-control">
           <input type="number" name="elevMin" [(ngModel)]="trail.elevMin" />
-          <label for="elevMin">Minimum elevation (km)</label>
+          <label for="elevMin">Minimum elevation (m)</label>
         </div>
       </div>
 
