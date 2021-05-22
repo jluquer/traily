@@ -16,6 +16,8 @@ import { TrailsComponent } from './pages/trails/trails.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { TrailFormComponent } from './pages/trail-form/trail-form.component';
 import { FileUploaderComponent } from './components/file-uploader/file-uploader.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UserSearchComponent } from './components/user-search/user-search.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { FileUploaderComponent } from './components/file-uploader/file-uploader.
     UserProfileComponent,
     TrailFormComponent,
     FileUploaderComponent,
+    UsersComponent,
+    UserSearchComponent,
   ],
   imports: [
     BrowserModule,

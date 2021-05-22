@@ -1,7 +1,7 @@
 .card {
   border-radius: $card-radius;
   box-shadow: 0 0 6px $gray-400;
-  i {
+  i:not(.btn i) {
     margin-right: 5px;
   }
 

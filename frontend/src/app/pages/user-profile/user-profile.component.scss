@@ -1,5 +1,17 @@
+@import "src/assets/scss/index.scss";
+
 #user-profile {
   .card-body {
     padding-bottom: 1rem;
+  }
+
+  p:nth-child(2) {
+    word-break: break-all;
+  }
+}
+
+@media (max-width: 320px) {
+  h1 {
+    font-size: 3rem !important;
   }
 }

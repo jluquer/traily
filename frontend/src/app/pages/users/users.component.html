@@ -1,0 +1,20 @@
+<div class="container">
+  <h1 class="page-title">Users</h1>
+  <app-user-search (searchEvent)="search($event)"></app-user-search>
+  <ng-container *ngIf="users">
+    <div *ngFor="let user of users">
+      <div class="card">
+        <div class="card-header">
+          <a [routerLink]="['/profile', user.userId]" routerLinkActive="router-link-active" >{{user.name}}</a>
+          <ng-container *ngIf="isFollowing(user.userId); then unfollowBtn else followBtn"></ng-container>
+          <ng-template #unfollowBtn>
+            <button class="btn btn-danger" (click)="unfollow(user.userId)">unfollow</button>
+          </ng-template>
+          <ng-template #followBtn>
+            <button class="btn btn-primary" (click)="follow(user.userId)">follow</button>
+          </ng-template>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
