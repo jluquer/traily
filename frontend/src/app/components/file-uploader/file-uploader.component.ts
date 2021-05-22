@@ -72,7 +72,7 @@ export class FileUploaderComponent implements AfterViewInit {
     this.trailService.uploadFile(file).subscribe(
       (res) => {
         this.status = "success";
-        const filePath = `${this.baseUrl}${res.filepath}`;
+        const filePath = `${res.filepath}`;
         this.filePathEvent.emit(filePath);
       },
       (err) => {

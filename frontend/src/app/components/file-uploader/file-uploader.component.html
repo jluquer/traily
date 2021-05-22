@@ -1,4 +1,4 @@
-<div id="fileUploader" *ngIf="!status && !filepath">
+<div id="fileUploader" [style.display]="!status && !filepath ? 'flex' : 'none'">
   <div #dragArea id="drag">
     <input type="file" name="file" accept="application/gpx+xml" #fileInput (change)="handleInput($event)">
     <img src="assets/images/image.svg" alt="default image">
