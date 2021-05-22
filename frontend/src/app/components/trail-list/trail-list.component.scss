@@ -1,0 +1,29 @@
+@import "src/assets/scss/index.scss";
+
+#loading {
+  margin-bottom: 3rem;
+  margin-top: 1rem;
+}
+
+#trail-list {
+  padding: 0 0.6rem 4rem 0.6rem;
+  .card.trail {
+    margin-bottom: 2rem;
+  }
+
+  .trail-info {
+    @include flex(space-between);
+    flex-wrap: wrap;
+    font-size: 0.8rem;
+    p {
+      margin-bottom: 0;
+    }
+    padding: 0 1rem 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid $gray-200;
+  }
+
+  .trail-description {
+    padding: 1rem;
+  }
+}

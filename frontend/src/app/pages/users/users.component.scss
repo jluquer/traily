@@ -1,5 +1,9 @@
 @import "src/assets/scss/index.scss";
 
+.container {
+  padding-bottom: 6rem;
+}
+
 .card {
   margin-bottom: 1rem !important;
   .card-header {
