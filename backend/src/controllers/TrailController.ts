@@ -42,7 +42,7 @@ export default class TrailController {
     try {
       return res.json(
         await getRepository(Trail).findOneOrFail(+req.headers.id, {
-          relations: ["user", "activity", "trailReviews", "trailComments"],
+          relations: ["user", "activity"],
         })
       );
     } catch (err) {
