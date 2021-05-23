@@ -109,11 +109,27 @@ export class TrailService {
     return this.http.post(this.trailUrl + 'upload', formData);
   }
 
-  delete(trailId: number) {
+  /**
+   * Delete a trail
+   *
+   * @param trailId {number}
+   * @returns {Observable<any>}
+   */
+  delete(trailId: number): Observable<any> {
     return this.http.delete(this.trailUrl + 'delete', {
       headers: {
         id: String(trailId),
       },
     });
+  }
+
+  /**
+   * Downloads the trail file
+   * 
+   * @param filepath {string} trail track filepath
+   * @returns {Observable<any>}
+   */
+  download(filepath: string): Observable<any> {
+    return this.http.get(this.trailUrl + 'getTrackFile', { headers: { filepath }, responseType: "blob" });
   }
 }

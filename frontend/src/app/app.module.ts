@@ -20,6 +20,7 @@ import { TrailsComponent } from './pages/trails/trails.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { TrailFormComponent } from './pages/trail-form/trail-form.component';
 import { UsersComponent } from './pages/users/users.component';
+import { TrailComponent } from './pages/trail/trail.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { UsersComponent } from './pages/users/users.component';
     UsersComponent,
     UserSearchComponent,
     FooterComponent,
+    TrailComponent,
   ],
   imports: [
     BrowserModule,
