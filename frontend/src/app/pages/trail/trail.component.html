@@ -1,0 +1,71 @@
+<div class="container" *ngIf="trail">
+  <h1 class="page-title">{{trail.name}}</h1>
+
+  <div class="field trail-info">
+    <p>Description</p>
+    <p>{{trail.description}}</p>
+  </div>
+
+  <div class="trail-info flex">
+    <div class="field">
+      <p>Difficulty</p>
+      <p *ngIf="trail.difficulty">{{getDifficulty(trail.difficulty)}}</p>
+    </div>
+    <div class="field">
+      <p>Distance</p>
+      <p>{{ trail.distance }}km</p>
+    </div>
+    <div class="field">
+      <p>Elevation gain</p>
+      <p>{{ trail.elevGain }}m</p>
+    </div>
+    <div class="field" *ngIf="trail.elevMax">
+      <p>Max elevation</p>
+      <p>{{ trail.elevMax }}m</p>
+    </div>
+    <div class="field" *ngIf="trail.elevMin">
+      <p>Min elevation</p>
+      <p>{{ trail.elevMin }}m</p>
+    </div>
+  </div>
+
+  <div class="trail-info flex">
+    <div class="field">
+      <p>Country</p>
+      <p>{{ trail.country }}</p>
+    </div>
+    <div class="field">
+      <p>Province</p>
+      <p>{{ trail.province }}</p>
+    </div>
+    <div class="field">
+      <p>City</p>
+      <p>{{ trail.city }}</p>
+    </div>
+  </div>
+
+  <div class="trail-info flex">
+    <div class="field">
+      <p>User</p>
+      <p>{{ trail.user?.name }}</p>
+    </div>
+    <div class="field">
+      <p>Activity</p>
+      <p>{{ trail.activity?.activity }}</p>
+    </div>
+    <div class="field" *ngIf="trail.createdAt">
+      <p>Uploaded</p>
+      <p>{{ trail.createdAt | amTimeAgo }}</p>
+    </div>
+  </div>
+
+  <ng-container *ngIf="trail.trailFilepath; else noFile">
+    <button class="btn btn-success" (click)="download(trail.trailFilepath)"><i class="fas fa-download"></i>
+      Download</button>
+  </ng-container>
+  <ng-template #noFile>
+    <div class="alert alert-danger">
+      This trail does not have any track files
+    </div>
+  </ng-template>
+</div>

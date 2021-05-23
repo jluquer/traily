@@ -1,0 +1,39 @@
+@import "src/assets/scss/index.scss";
+
+.container {
+  padding-bottom: 6rem;
+  .page-title {
+    font-size: 3rem;
+  }
+  .flex {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .field {
+    *:first-child {
+      font-weight: bold;
+      font-size: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    *:last-child{
+      margin-bottom: 0;
+    }
+  }
+
+  .trail-info {
+    width: 100%;
+    padding: 2rem;
+    box-shadow: 0 0 6px $gray-400;
+    background-color: $gray-100;
+    margin-bottom: 2rem;
+  }
+}
+
+@include media("sm") {
+  .page-title {
+    font-size: 4rem;
+  }
+}

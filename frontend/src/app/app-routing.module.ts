@@ -9,6 +9,7 @@ import { TrailsComponent } from './pages/trails/trails.component';
 import { UserProfileComponent } from './pages/user-profile/user-profile.component';
 import { TrailFormComponent } from './pages/trail-form/trail-form.component';
 import { UsersComponent } from './pages/users/users.component';
+import { TrailComponent } from './pages/trail/trail.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
@@ -26,6 +27,7 @@ const routes: Routes = [
   { path: 'trails', component: TrailsComponent, canActivate: [LoggedGuard] },
   { path: 'trail/create', component: TrailFormComponent, canActivate: [LoggedGuard] },
   { path: 'trail/edit/:trailId', component: TrailFormComponent, canActivate: [LoggedGuard] },
+  { path: 'trail/:trailId', component: TrailComponent, canActivate: [LoggedGuard] },
   {
     path: 'profile/:userId',
     component: UserProfileComponent,

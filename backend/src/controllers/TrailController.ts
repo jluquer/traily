@@ -40,7 +40,11 @@ export default class TrailController {
 
   static async getOneById(req: Request, res: Response): Promise<Response> {
     try {
-      return res.json(await getRepository(Trail).findOneOrFail(+req.headers.id));
+      return res.json(
+        await getRepository(Trail).findOneOrFail(+req.headers.id, {
+          relations: ["user", "activity", "trailReviews", "trailComments"],
+        })
+      );
     } catch (err) {
       return res.status(400).json({ status: "error" });
     }
