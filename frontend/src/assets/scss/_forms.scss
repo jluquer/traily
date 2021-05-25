@@ -47,6 +47,17 @@
 }
 
 form {
+  textarea {
+    overflow-y: scroll;
+    height: 100px;
+    width: 100%;
+    border: 0.15em solid $green-5;
+    outline: none;
+    padding: 0.5em;
+  }
+}
+
+.form {
   background-color: rgba($gray-300, 0.8);
   box-shadow: 0 0 10px rgb(155, 155, 155);
   border-radius: 0.125rem;
@@ -59,6 +70,8 @@ form {
       outline: none;
     }
   
+    
+    
     &::-webkit-slider-runnable-track {
       height: 10px;
       cursor: pointer;
