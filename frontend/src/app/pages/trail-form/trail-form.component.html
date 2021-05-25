@@ -2,7 +2,7 @@
   <div class="container">
     <h1 class="page-title">{{ edit ? "Edit Trail" : "Create Trail" }}</h1>
 
-    <form (ngSubmit)="onSubmit()" #trailForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #trailForm="ngForm" class="form">
       <div class="form-control">
         <input type="text" name="name" [(ngModel)]="trail.name" #name="ngModel" required />
         <label for="name">trail name*</label>

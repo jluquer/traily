@@ -3,7 +3,7 @@ import { User } from "./User";
 import { Challenge } from "./Challenge";
 import { IsNotEmpty } from "class-validator";
 
-@Index("userId", ["userId", "challengeId"], { unique: true })
+@Index("userId", ["userId"], { })
 @Index("challengeId", ["challengeId"], {})
 @Entity("challenge_comment", { schema: "traily" })
 export class ChallengeComment {

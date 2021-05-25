@@ -3,7 +3,7 @@
 .container {
   padding-bottom: 6rem;
 }
-form {
+.form {
   background-color: $white;
 
   .three-fields {
@@ -29,14 +29,6 @@ form {
     }
     small {
       color: $red;
-    }
-    textarea {
-      overflow-y: scroll;
-      height: 100px;
-      width: 100%;
-      border: 0.15em solid $green-5;
-      outline: none;
-      padding: 0.5em;
     }
 
     .ng-touched.ng-invalid {
@@ -84,7 +76,7 @@ form {
 }
 
 @include media("sm") {
-  form {
+  .form {
     padding: 3rem;
 
     input[type="range"] {
@@ -94,7 +86,7 @@ form {
 }
 
 @include media("md") {
-  form {
+  .form {
     .form-group {
       @include flex(space-between);
       .form-control {

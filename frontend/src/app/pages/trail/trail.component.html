@@ -68,4 +68,30 @@
       This trail does not have any track files
     </div>
   </ng-template>
+
+  <ng-container *ngIf="comments">
+    <div class="card" *ngFor="let comment of comments">
+      <div class="card-header">
+        <small *ngIf="comment.user">
+          <i class="far fa-user"></i>{{ comment.userId === loggedUserId ? 'You' : comment.user.name }}
+        </small>
+        <ng-container *ngIf="comment.userId === loggedUserId && comment.trailCommentId">
+          <button class="btn btn-danger" (click)="deleteComment(comment.trailCommentId)">
+            <i class="fas fa-trash-alt"></i>
+          </button>
+        </ng-container>
+      </div>
+      <div class="card-body">
+        <p>{{comment.comment}}</p>
+        <p *ngIf="comment.createdAt"><small>{{comment.createdAt | amTimeAgo }}</small></p>
+      </div>
+    </div>
+  </ng-container>
+
+  <form (ngSubmit)="comment(commentForm)" #commentForm>
+    <div class="form-control">
+      <textarea name="comment" cols="30" rows="10" [(ngModel)]="newComment" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Comment</button>
+  </form>
 </div>

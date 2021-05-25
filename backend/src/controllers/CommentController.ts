@@ -1,6 +1,6 @@
 import { validate } from "class-validator";
 import { Request, Response } from "express";
-import { getRepository } from "typeorm";
+import { getConnection, getRepository } from "typeorm";
 import { env } from "../environment";
 import { Challenge } from "../models/Challenge";
 import { ChallengeComment } from "../models/ChallengeComment";
@@ -17,8 +17,8 @@ export default class CommentController {
 
       if (!user || !trail) return res.status(404).json({ status: "error" });
       trailComment.comment = req.body.comment;
-      trailComment.user = user;
-      trailComment.trail = trail;
+      trailComment.userId = user.userId;
+      trailComment.trailId = trail.trailId;
 
       const errors = await validate(trailComment, env.validationOptions);
       if (errors.length > 0) return res.status(400).json(errors);
@@ -117,12 +117,12 @@ export default class CommentController {
 
   static async deleteTrailComment(req: Request, res: Response): Promise<Response> {
     try {
-      const trailCommentRepository = getRepository(TrailComment);
-      const trailComment = await trailCommentRepository.findOneOrFail(
-        +req.header("trailCommentId")
-      );
-
-      await trailCommentRepository.delete(trailComment);
+      await getConnection()
+        .createQueryBuilder()
+        .delete()
+        .from(TrailComment)
+        .where("trailCommentId = :id", {id: +req.header("trailCommentId")})
+        .execute();
       return res.status(200).json({ status: "success" });
     } catch (err) {
       return res.status(404).json({ status: "error" });

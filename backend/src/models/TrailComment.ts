@@ -11,7 +11,7 @@ import { User } from "./User";
 import { Trail } from "./Trail";
 import { IsNotEmpty } from "class-validator";
 
-@Index("userId", ["userId", "trailId"], { unique: true })
+@Index("userId", ["userId"], {})
 @Index("trailId", ["trailId"], {})
 @Entity("trail_comment", { schema: "traily" })
 export class TrailComment {
