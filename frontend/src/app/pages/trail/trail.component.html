@@ -29,6 +29,10 @@
     </div>
   </div>
 
+  <ng-container *ngIf="trail.distance && trail.elevGain">
+    <app-chart [distance]="trail.distance" [elevationGain]="trail.elevGain"></app-chart>
+  </ng-container>
+
   <div class="trail-info flex">
     <div class="field">
       <p>Country</p>
