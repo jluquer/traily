@@ -21,6 +21,8 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { TrailFormComponent } from './pages/trail-form/trail-form.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TrailComponent } from './pages/trail/trail.component';
+import { ChartComponent } from './components/chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import { TrailComponent } from './pages/trail/trail.component';
     UserSearchComponent,
     FooterComponent,
     TrailComponent,
+    ChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -46,6 +49,7 @@ import { TrailComponent } from './pages/trail/trail.component';
     ReactiveFormsModule,
     HttpClientModule,
     MomentModule,
+    ChartsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: UserInterceptor, multi: true },
