@@ -1,3 +1,15 @@
+@import "src/assets/scss/index.scss";
+
 .container {
-  padding-top: 4rem;
+  .subtitle:first-of-type {
+    margin-top: 3rem;
+  }
+
+  iframe {
+    margin-bottom: 1.5rem;
+  }
+
+  #music {
+    @include flex(space-around);
+  }
 }
