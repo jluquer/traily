@@ -28,8 +28,38 @@
   font-size: 1rem;
   padding: 0.375rem 0.75rem;
   font-weight: 400;
-  border-radius: 0.25rem;
+  border-radius: 0;
   line-height: 1.5;
+  position: relative;
+  background-color: rgba($green-2, 0.8) !important;
+  color: $green-6;
+
+  &:hover {
+    background-color: $green-2 !important;
+  }
+
+  &:before, &:after {
+    position: absolute;
+    content: "";
+    top: -3px;
+    left: -3px;
+    width: 0;
+    height: 0;
+    background: transparent;
+    border: 3px solid transparent;
+  }
+
+  &:hover:before {
+    animation: animateBeforeBorders 1s linear forwards;
+  }
+
+  &:hover:after {
+    animation: animateAfterBorders 1s linear forwards;
+  }
+
+  &:hover:before, &:hover:after {
+    animation-delay: 0.2s;
+  }
 }
 
 .buttons {
@@ -41,5 +71,45 @@
 @each $color, $value in $theme-colors {
   .btn-#{$color} {
     @include button-variant($value);
+  }
+}
+
+@keyframes animateBeforeBorders {
+  0% {
+    width: 0;
+    height: 0;
+    border-top-color: $animationBorderColor;
+  }
+  50% {
+    width: 100%;
+    height: 0;
+    border-top-color: $animationBorderColor;
+    border-right-color: $animationBorderColor;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    border-top-color: $animationBorderColor;
+    border-right-color: $animationBorderColor;
+  }
+}
+
+@keyframes animateAfterBorders {
+  0% {
+    width: 0;
+    height: 0;
+    border-bottom-color: $animationBorderColor;
+  }
+  50% {
+    width: 0;
+    height: 100%;
+    border-bottom-color: $animationBorderColor;
+    border-left-color: $animationBorderColor;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    border-bottom-color: $animationBorderColor;
+    border-left-color: $animationBorderColor;
   }
 }
