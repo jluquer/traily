@@ -27,7 +27,6 @@
 
 .page-title {
   text-align: center;
-  font-size: 4rem;
   letter-spacing: 5px;
   margin-bottom: 2rem;
   padding-top: 2rem;
@@ -35,7 +34,6 @@
 
 .subtitle {
   text-align: center;
-  font-size: 2.5rem;
   letter-spacing: 5px;
   margin: 5rem 0 2rem 0;
 }
@@ -75,4 +73,13 @@
   font-size: 2.5rem;
   font-weight: bold;
   font-style: italic;
+}
+
+@include media("sm") {
+  .page-title {
+    font-size: 4rem;
+  }
+  .subtitle {
+    font-size: 2.5rem;
+  }
 }

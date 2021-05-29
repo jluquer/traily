@@ -5,11 +5,17 @@
     margin-top: 3rem;
   }
 
+  section:first-of-type {
+    padding: 0 0.6rem 4rem 0.6rem;
+  }
+
   iframe {
     margin-bottom: 1.5rem;
   }
 
   #music {
     @include flex(space-around);
+    flex-wrap: wrap;
+    gap: 2rem;
   }
 }

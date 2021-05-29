@@ -1,10 +1,10 @@
 {
    "type": "mysql",
-   "host": "localhost",
+   "host": "remotemysql.com",
    "port": 3306,
-   "username": "luque",
-   "password": "luque",
-   "database": "traily",
+   "username": "mb1GeoCx3C",
+   "password": "RrSAaPDubX",
+   "database": "mb1GeoCx3C",
    "synchronize": true,
    "logging": false,
    "entities": [
