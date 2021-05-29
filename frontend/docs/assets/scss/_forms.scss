@@ -1,0 +1,162 @@
+.form-login {
+  min-height: 400px;
+
+  h1,
+  .align-center {
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+
+  .form-control {
+    margin-bottom: 1rem;
+    width: 100%;
+    > * {
+      width: 100%;
+    }
+    label {
+      font-size: 0.8em;
+      margin-bottom: 10px;
+    }
+    small {
+      color: $red;
+      text-align: left !important;
+    }
+    input {
+      font-size: 1rem;
+      display: block;
+      padding: 0.5em;
+      outline: none;
+      background-color: $gray-100;
+      border-radius: $border-radius;
+      border: 1px solid transparent;
+    }
+  }
+
+  .btn {
+    width: 100%;
+    font-weight: bold;
+  }
+
+  a {
+    color: $green-6;
+    text-align: right;
+    display: block;
+    width: 100%;
+    margin-top: 2em;
+  }
+}
+
+form {
+  textarea {
+    overflow-y: scroll;
+    height: 100px;
+    width: 100%;
+    border: 0.15em solid $green-5;
+    outline: none;
+    padding: 0.5em;
+  }
+}
+
+.form {
+  background-color: rgba($gray-300, 0.8);
+  box-shadow: 0 0 10px rgb(155, 155, 155);
+  border-radius: 0.125rem;
+  padding: 1rem;
+
+  input[type="range"] {
+    -webkit-appearance: none;
+    margin: 10px 0;
+    &:focus {
+      outline: none;
+    }
+  
+    
+    
+    &::-webkit-slider-runnable-track {
+      height: 10px;
+      cursor: pointer;
+      background: $green-3;
+      border-radius: 25px;
+      border: 0px solid #000101;
+    }
+    &::-webkit-slider-thumb {
+      height: 16px;
+      width: 30px;
+      border-radius: 7px;
+      background: $green-5;
+      cursor: pointer;
+      -webkit-appearance: none;
+      margin-top: -3.6px;
+    }
+    &:focus::-webkit-slider-runnable-track {
+      background: $green-3;
+    }
+    &::-moz-range-track {
+      height: 10px;
+      cursor: pointer;
+      background: $green-3;
+      border-radius: 25px;
+      border: 0px solid #000101;
+    }
+    &::-moz-range-thumb {
+      border: 0px solid #000000;
+      height: 16px;
+      width: 30px;
+      border-radius: 7px;
+      background:  $green-5;
+      cursor: pointer;
+    }
+    &::-ms-track {
+      height: 10px;
+      cursor: pointer;
+      background: transparent;
+      border-color: transparent;
+      border-width: 30px 0;
+      color: transparent;
+    }
+    &::-ms-fill-lower {
+      background: $green-3;
+      border: 0px solid #000101;
+      border-radius: 50px;
+    }
+    &::-ms-fill-upper {
+      background: $green-3;
+      border: 0px solid #000101;
+      border-radius: 50px;
+    }
+    &::-ms-thumb {
+      border: 0px solid #000000;
+      height: 16px;
+      width: 30px;
+      border-radius: 7px;
+      background: $green-5;
+      cursor: pointer;
+    }
+    &:focus::-ms-fill-lower {
+      background: $green-3;
+    }
+    &:focus::-ms-fill-upper {
+      background: $green-3;
+    }
+  }
+}
+
+@include media("xs") {
+  .form-login {
+    margin: 0.5rem;
+    padding: 1.5rem;
+  }
+}
+
+@include media("sm") {
+  .form-login {
+    min-width: 500px;
+    padding: 2rem 3rem 2rem 3rem;
+  }
+}
+
+@include media("md") {
+  .form-login {
+    min-width: 550px;
+  }
+}
