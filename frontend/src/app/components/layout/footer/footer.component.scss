@@ -1,4 +1,4 @@
-@import "src/assets/scss/index.scss";
+@import "src/assets/scss/variables", "src/assets/scss/mixins";
 
 footer {
   min-height: $footer-h;
