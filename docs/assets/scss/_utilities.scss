@@ -1,0 +1,85 @@
+.container-full {
+  height: 100vh;
+  width: 100%;
+  @include flex();
+}
+
+.full {
+  height: 100;
+  width: 100%;
+}
+
+.bg-green {
+  background-color: $green-1;
+}
+
+.bg-forest {
+  background-image: url("../images/forest.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.bg-blue {
+  background-color: $blue !important;
+  color: $white;
+}
+
+.page-title {
+  text-align: center;
+  letter-spacing: 5px;
+  margin-bottom: 2rem;
+  padding-top: 2rem;
+}
+
+.subtitle {
+  text-align: center;
+  letter-spacing: 5px;
+  margin: 5rem 0 2rem 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.m-0 {
+  margin: 0;
+}
+
+.alert {
+  padding: 1.5rem;
+  border-radius: $border-radius;
+}
+
+.alert-danger {
+  background-color: lighten($color: $red, $amount: 30);
+}
+
+.alert-success {
+  background-color: $green-1;
+}
+
+.logo {
+  @include flex();
+  gap: 0.4rem;
+  img {
+    width: 70px;
+  }
+  color: $green-6;
+  font-size: 2.5rem;
+  font-weight: bold;
+  font-style: italic;
+}
+
+@include media("sm") {
+  .page-title {
+    font-size: 4rem;
+  }
+  .subtitle {
+    font-size: 2.5rem;
+  }
+}
