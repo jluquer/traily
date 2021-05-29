@@ -10,6 +10,7 @@ import { UserProfileComponent } from './pages/user-profile/user-profile.componen
 import { TrailFormComponent } from './pages/trail-form/trail-form.component';
 import { UsersComponent } from './pages/users/users.component';
 import { TrailComponent } from './pages/trail/trail.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/dashboard' },
@@ -25,15 +26,28 @@ const routes: Routes = [
     canActivate: [LoggedGuard],
   },
   { path: 'trails', component: TrailsComponent, canActivate: [LoggedGuard] },
-  { path: 'trail/create', component: TrailFormComponent, canActivate: [LoggedGuard] },
-  { path: 'trail/edit/:trailId', component: TrailFormComponent, canActivate: [LoggedGuard] },
-  { path: 'trail/:trailId', component: TrailComponent, canActivate: [LoggedGuard] },
+  {
+    path: 'trail/create',
+    component: TrailFormComponent,
+    canActivate: [LoggedGuard],
+  },
+  {
+    path: 'trail/edit/:trailId',
+    component: TrailFormComponent,
+    canActivate: [LoggedGuard],
+  },
+  {
+    path: 'trail/:trailId',
+    component: TrailComponent,
+    canActivate: [LoggedGuard],
+  },
   {
     path: 'profile/:userId',
     component: UserProfileComponent,
     canActivate: [LoggedGuard],
   },
   { path: 'users', component: UsersComponent, canActivate: [LoggedGuard] },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({

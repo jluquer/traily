@@ -23,6 +23,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { TrailComponent } from './pages/trail/trail.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ChartsModule } from 'ng2-charts';
     FooterComponent,
     TrailComponent,
     ChartComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
