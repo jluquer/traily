@@ -182,7 +182,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `name`, `email`, `password`, `type`) VALUES
-(1, 'Javier Luque Rodríguez', 'javier.luque@iescampanillas.com', '$2a$10$HCgIeErjrNdARvmALO6VU.NrIRF58HoSQOzmrdvfvUuLJ5pgIx8ze', 1),
+(1, 'Javier Luque Rodríguez', 'luque@gmail.com', '$2a$10$HCgIeErjrNdARvmALO6VU.NrIRF58HoSQOzmrdvfvUuLJ5pgIx8ze', 1),
 (2, 'Adrian Luque Rodriguez', 'adri@gmail.com', '$2a$10$4zCY5bEzrMw/5C8eIum5Re0HrbVRuH23LRsZigy2AlV0xhuX45YLy', 1),
 (3, 'Fran Gutierrez Castro', 'guti@gmail.com', '$2a$10$uN2mSlnyR/Qzenc/bIxH5OrT9Xis6gV1KoePkqPHYrD.e/ANNDPZK', 1);
 
