@@ -33,7 +33,7 @@
     "ts-node": "3.3.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts --prod",
+    "start": "ts-node src/index.ts",
     "start:dev": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "front": "npm --prefix frontend start",
