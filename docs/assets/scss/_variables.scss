@@ -1,0 +1,60 @@
+$white: #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #6c757d !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black: #000 !default;
+
+$blue: #5878cc !default;
+$red: #cc4c2f !default;
+$orange: #cc7f39 !default;
+$yellow: #d9cb3d !default;
+$cyan: #58b5cc !default;
+$green-1: #d1e6b2 !default;
+$green-2: #95cd43 !default;
+$green-3: #87b543 !default;
+$green-4: #789d42 !default;
+$green-5: #5b6d40 !default;
+$green-6: #474c3f !default;
+
+$primary: $blue !default;
+$secondary: $gray-600 !default;
+$success: $green-3 !default;
+$info: $cyan !default;
+$warning: $yellow !default;
+$danger: $red !default;
+$light: $gray-100 !default;
+$dark: $gray-900 !default;
+// scss-docs-end theme-color-variables
+
+// scss-docs-start theme-colors-map
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "success": $success,
+  "info": $info,
+  "warning": $warning,
+  "danger": $danger,
+  "light": $light,
+  "dark": $dark,
+  "green": $green-4
+) !default;
+
+$breakpoints: (
+  xs: 330px,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+  xxl: 1400px,
+) !default;
+
+$border-radius: 4px;
+$card-radius: 0.5rem;
+$footer-h: 250px;
+$animationBorderColor: $green-5;
