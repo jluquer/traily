@@ -32,7 +32,10 @@
       "uuid": "^8.3.2"
    },
    "scripts": {
-      "start": "ts-node src/index.ts",
-      "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+      "start": "ts-node src/index.ts --prod",
+      "start:dev": "ts-node src/index.ts",
+      "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+      "front": "npm --prefix frontend start",
+      "deploy": "npm --prefix frontend run deploy"
    }
 }

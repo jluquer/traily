@@ -1,4 +1,4 @@
-const prod = true;
+const prod = process.argv.includes("--prod") || false;
 
 export default {
   type: "mysql",

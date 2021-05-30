@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  host: "https://traily.herokuapp.com/"
+  host: "https://traily.herokuapp.com/api"
 };
