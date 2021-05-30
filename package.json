@@ -33,6 +33,8 @@
    },
    "scripts": {
       "start": "ts-node src/index.ts",
-      "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+      "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+      "front": "npm --prefix frontend start",
+      "deploy": "npm --prefix frontend run deploy"
    }
 }
