@@ -1,6 +1,6 @@
 const prod = process.argv.includes("--prod") || false;
 
-export default {
+ export default {
   type: "mysql",
   host: prod ? "us-cdbr-east-04.cleardb.com" : "localhost",
   port: 3306,
