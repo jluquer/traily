@@ -4,6 +4,11 @@
 <div class="container-full">
   <form (ngSubmit)="onSubmit()" [formGroup]="loginForm" class="form form-login">
     <h1>User Login</h1>
+    <ng-container *ngIf="invalid">
+      <div class="alert alert-danger">
+        Invalid credentials
+      </div>
+    </ng-container>
     <div class="form-control">
       <input name="email" type="email" formControlName="email" placeholder="Email" />
       <div *ngIf="email && (email.invalid  || email.dirty) && displayError.email">
