@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', Validators.required),
   });
   displayError: any = { email: false, password: false };
+  invalid = false;
 
   constructor(private authService: AuthService) {}
 
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
         (_data) => {},
         (_err) => {
           this.displayErrors(false);
+          this.invalid = true;
         }
       );
     }
