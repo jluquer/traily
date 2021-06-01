@@ -1,5 +1,9 @@
 {
    "compilerOptions": {
+      "lib": [
+         "es5",
+         "es6"
+      ],
       "target": "es5",
       "module": "commonjs",
       "moduleResolution": "node",
@@ -7,7 +11,6 @@
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
       "sourceMap": true,
-      "importHelpers": true,
    },
-   "exclude": ["build", "node_modules", "frontend"]
+   "exclude": ["node_modules", "frontend"]
 }
