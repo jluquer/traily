@@ -1,5 +1,5 @@
 const prod = process.argv.includes("--prod") || false;
-
+// bfe3318d5ddf4b:3faaed65@us-cdbr-east-04.cleardb.com/heroku_ce9defb7073d5b7
  export default {
   type: "mysql",
   host: prod ? "us-cdbr-east-04.cleardb.com" : "localhost",
