@@ -17,7 +17,7 @@ createConnection()
     app.use(express.json());
     app.use("/api", routes);
 
-    app.listen(+port, '0.0.0.0', () => {
+    app.listen(port, () => {
       console.log(`Server running on http://localhost:${port}`);
     });
   })
