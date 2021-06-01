@@ -4,6 +4,13 @@ import { getRepository } from "typeorm";
 import { Activity } from "../models/Activity";
 
 export default class ActivityController {
+  /**
+   * Creates a new activity checking if its a valid activity.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response error or success
+   */
   static create = async (req: Request, res: Response) => {
     try {
       const { activity } = req.body;
@@ -20,25 +27,47 @@ export default class ActivityController {
     }
   };
 
+  /**
+   * Get all activities from database.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response error or success
+   */
   static getAll = async (req: Request, res: Response) => {
     try {
-      res.json(await getRepository(Activity).find());
+      return res.json(await getRepository(Activity).find());
     } catch (err) {
-      res.status(400).json({ status: "error" });
+      return res.status(400).json({ status: "error" });
     }
   };
 
+  /**
+   * Get one activity by id. Returns an error if it finds more than one 
+   * activity.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response error or activity
+   */
   static getOneById = async (req: Request, res: Response) => {
     const { id } = req.headers;
     if (!+id) return res.status(400).json({ message: "invalid id" });
 
     try {
-      res.json(await getRepository(Activity).findOneOrFail(+id));
+      return res.json(await getRepository(Activity).findOneOrFail(+id));
     } catch (err) {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
   };
 
+  /**
+   * Update an activity.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response success or error
+   */
   static update = async (req: Request, res: Response) => {
     const { id } = req.headers;
     if (!+id) return res.status(400).json({ message: "invalid id" });
@@ -65,6 +94,13 @@ export default class ActivityController {
     }
   };
 
+  /**
+   * Delete only one activity.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response error or success
+   */
   static delete = async (req: Request, res: Response) => {
     const { id } = req.headers;
     if (!+id) return res.status(400).json({ message: "invalid id" });

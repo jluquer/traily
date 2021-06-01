@@ -16,6 +16,5 @@ router.put("/update", [verifyToken, checkFile], TrailController.update);
 router.delete("/delete", [verifyToken], TrailController.delete);
 router.post("/upload", [verifyToken, multer.single("file0")], TrailController.uploadFile);
 router.get("/getTrackFile", [verifyToken], TrailController.getTrackFile);
-router.get("/download", [verifyToken], TrailController.downloadTrackFile);
 
 export { router as trailRoutes };

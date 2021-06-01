@@ -9,6 +9,14 @@ import { TrailComment } from "../models/TrailComment";
 import { User } from "../models/User";
 
 export default class CommentController {
+  /**
+   * Saves a new trail comment to the database. If the user or the trail does not exist
+   * it will fail returning a response status 404 code.
+   *
+   * @param req
+   * @param res
+   * @returns success or error.
+   */
   static async createTrailComment(req: Request, res: Response): Promise<Response> {
     try {
       const trailComment = new TrailComment();
@@ -30,6 +38,14 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Saves a new challenge comment to the database. If the user or the trail does not exist
+   * it will fail returning a response status 404 code.
+   *
+   * @param req
+   * @param res
+   * @returns success or error.
+   */
   static async createChallengeComment(req: Request, res: Response): Promise<Response> {
     try {
       const challengeComment = new ChallengeComment();
@@ -51,6 +67,14 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Get all trail comments by trail id. It will return a response status 404 if the trail id
+   * does not belong to any trail.
+   *
+   * @param req
+   * @param res
+   * @returns trail comments or error.
+   */
   static async getAllByTrailId(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(
@@ -64,6 +88,14 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Get all challenges comments by challenge id. It will return a response status 404 if the challenge
+   * id does not belong to any trail.
+   *
+   * @param req
+   * @param res
+   * @returns trail comments or error.
+   */
   static async getAllByChallengeId(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(
@@ -77,6 +109,12 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Updates a trail comment. The comment is only thing that can be changed.
+   * @param req 
+   * @param res 
+   * @returns status success or error.
+   */
   static async updateTrailComment(req: Request, res: Response): Promise<Response> {
     try {
       const trailCommentRepository = getRepository(TrailComment);
@@ -95,6 +133,12 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Updates a challenge comment. The comment is only thing that can be changed.
+   * @param req 
+   * @param res 
+   * @returns status success or error.
+   */
   static async updateChallengeComment(req: Request, res: Response): Promise<Response> {
     try {
       const challengeCommentRepository = getRepository(ChallengeComment);
@@ -115,13 +159,20 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Deletes a trail comment by its trail comment id if it exists.
+   * 
+   * @param req 
+   * @param res 
+   * @returns status success or error
+   */
   static async deleteTrailComment(req: Request, res: Response): Promise<Response> {
     try {
       await getConnection()
         .createQueryBuilder()
         .delete()
         .from(TrailComment)
-        .where("trailCommentId = :id", {id: +req.header("trailCommentId")})
+        .where("trailCommentId = :id", { id: +req.header("trailCommentId") })
         .execute();
       return res.status(200).json({ status: "success" });
     } catch (err) {
@@ -129,6 +180,13 @@ export default class CommentController {
     }
   }
 
+  /**
+   * Deletes a challenge comment by its challenge comment id if it exists.
+   * 
+   * @param req 
+   * @param res 
+   * @returns status success or error
+   */
   static async deleteChallengeComment(req: Request, res: Response): Promise<Response> {
     try {
       const challengeCommentRepository = getRepository(ChallengeComment);

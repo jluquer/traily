@@ -8,6 +8,13 @@ import { User } from "../models/User";
 import { UserChallenge } from "../models/UserChallenge";
 
 export default class ChallengeController {
+  /**
+   * Creates a new challenge.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response promise with status success or error. 
+   */
   static async create(req: Request, res: Response): Promise<Response> {
     try {
       const challenge = new Challenge();
@@ -23,6 +30,13 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Get all the challenges from database.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response with all the challenges or error.
+   */
   static async getAll(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(await getRepository(Challenge).find());
@@ -31,6 +45,13 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Get one challenge by its id or fail.
+   * 
+   * @param req 
+   * @param res 
+   * @returns one challenge.
+   */
   static async getOneById(req: Request, res: Response): Promise<Response> {
     try {
       const challengeId = req.header("challengeId");
@@ -40,6 +61,14 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Updates one challenge, if it finds more than one challenge or none it will
+   * fail.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response error or success.
+   */
   static async update(req: Request, res: Response): Promise<Response> {
     try {
       const challengeId = req.header("challengeId");
@@ -59,6 +88,13 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Deletes only one challenge.
+   * 
+   * @param req 
+   * @param res 
+   * @returns success or error.
+   */
   static async delete(req: Request, res: Response): Promise<Response> {
     try {
       const challengeId = req.header("challengeId");
@@ -71,6 +107,13 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Updates challenge status to completed.
+   * 
+   * @param req 
+   * @param res 
+   * @returns success or error
+   */
   static async complete(req: Request, res: Response): Promise<Response> {
     try {
       const userId = +req.header("userId");
@@ -91,6 +134,13 @@ export default class ChallengeController {
     }
   }
 
+  /**
+   * Get all challenges completed by the user id in request headers.
+   * 
+   * @param req 
+   * @param res 
+   * @returns challenges completed or error
+   */
   static async getCompleted(req: Request, res: Response): Promise<Response> {
     try {
       const userId = +req.header("userId");
