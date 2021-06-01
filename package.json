@@ -29,10 +29,11 @@
     "path": "^0.12.7",
     "reflect-metadata": "^0.1.10",
     "typeorm": "0.2.32",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "ts-node": "3.3.0"
   },
   "scripts": {
-    "start": "ts-node src/index.ts -p $PORT --prod",
+    "start": "ts-node src/index.ts --prod",
     "start:dev": "ts-node src/index.ts",
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "front": "npm --prefix frontend start",
