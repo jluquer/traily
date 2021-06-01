@@ -18,4 +18,7 @@ const prod = process.argv.includes("--prod") || false;
     migrationsDir: "src/migration",
     subscribersDir: "src/subscriber",
   },
+  extra: {
+    connectionLimit: 5
+  }
 };
