@@ -41,7 +41,10 @@ export class UserProfileComponent implements OnInit {
     this.getTrails();
   }
 
-  getTrails() {
+  /**
+   * Set the trails to the trails returned of the back.
+   */
+  getTrails(): void {
     this.trailService.getAllByUserId(this.userId).subscribe(
       (trails) => (this.trails = trails),
       () => {}

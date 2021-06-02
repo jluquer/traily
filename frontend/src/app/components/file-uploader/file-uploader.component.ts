@@ -24,11 +24,16 @@ export class FileUploaderComponent implements AfterViewInit {
   @ViewChild('dragArea') dragArea?: ElementRef;
   constructor(private trailService: TrailService) {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit(): void {
     this.handleDragArea();
   }
 
-  handleDragArea() {
+  /**
+   * Listen to events on the drag area to handle if a user drops a file
+   * in the drag area. If the user drops a file then it will parse the
+   * file to handleFiles function, that will handle the files.
+   */
+  handleDragArea(): void {
     try {
       ['dragenter', 'dragover', 'dragleave', 'drop'].forEach((eventName) => {
         this.dragArea?.nativeElement.addEventListener(eventName, (e: Event) => {
@@ -43,10 +48,21 @@ export class FileUploaderComponent implements AfterViewInit {
     } catch (err) {}
   }
 
+  /**
+   * If the user uploads a file with input then it will parse the
+   * file to handleFiles function, that will handle the files.
+   */
   handleInput(e: any) {
     this.handleFiles(e.target.files);
   }
 
+  /**
+   * Checks if the user has uploaded only one gpx file, otherwise it will
+   * fire an error alert. If the file is correct then it will parse the file
+   * to the upload function.
+   * 
+   * @param files file to be uploaded.
+   */
   handleFiles(files?: FileList) {
     try {
       if (!files) throw new Error('No files found');
@@ -67,6 +83,12 @@ export class FileUploaderComponent implements AfterViewInit {
     }
   }
   
+  /**
+   * Uploads a file to the backend storage. If the file is uploaded then
+   * it will emit an event with the gpx file filepath.
+   * 
+   * @param file file to be uploaded
+   */
   uploadFile(file: File): void {
     this.status = 'uploading';
     this.trailService.uploadFile(file).subscribe(
@@ -75,7 +97,7 @@ export class FileUploaderComponent implements AfterViewInit {
         const filePath = `${res.filepath}`;
         this.filePathEvent.emit(filePath);
       },
-      (err) => {
+      (_) => {
         Swal.fire({
           title: 'Oops',
           text: 'Trail file could not be uploaded. Try again!',
@@ -84,7 +106,12 @@ export class FileUploaderComponent implements AfterViewInit {
     );
   }
 
-  resetStatus() {
+  /**
+   * Resets the status of the file uploading process. And also 
+   * emits an event with an empty string to reset trail filepath
+   * in parent component.
+   */
+  resetStatus(): void {
     this.status = undefined;
     this.filePathEvent.emit("");
   }

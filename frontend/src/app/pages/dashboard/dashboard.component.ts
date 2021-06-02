@@ -15,7 +15,11 @@ export class DashboardComponent implements OnInit {
     this.getTrails();
   }
 
-  getTrails() {
+  /**
+   * Get all trail from observable and sets trails variable to
+   * the trails that returns the backend.
+   */
+  getTrails(): void {
     this.trailService.getDashboardTrails().subscribe(
       (trails) => (this.trails = trails),
       () => {}

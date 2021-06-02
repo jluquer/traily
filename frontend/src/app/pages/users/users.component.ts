@@ -24,6 +24,9 @@ export class UsersComponent implements OnInit {
     this.getFollowing();
   }
 
+  /**
+   * Sets the trails to the trails returned of the back.
+   */
   private getUsers() {
     this.userService
       .getAll()
@@ -38,6 +41,9 @@ export class UsersComponent implements OnInit {
       );
   }
 
+  /**
+   * Sets the following variable to the users that is following the logged user.
+   */
   private getFollowing() {
     this.userService.getFollowing().subscribe(
       (users) => (this.following = users),
@@ -45,20 +51,43 @@ export class UsersComponent implements OnInit {
     );
   }
 
+  /**
+   * Checks if the logged user is following the user parsed in params.
+   * 
+   * @param userId user to check if you are following.
+   * @returns true if the logged user is following the user.
+   */
   isFollowing(userId?: number): boolean {
     if (!userId) return false;
     return this.following.filter((user) => user.userId === userId).length > 0;
   }
 
-  follow(userId?: number) {
+  /**
+   * Follow a user.
+   * 
+   * @param userId user to follow.
+   */
+  follow(userId?: number): void {
     if (userId)
       this.userService.follow(userId).subscribe((_) => this.getFollowing());
   }
-  unfollow(userId?: number) {
+
+  /**
+   * Unfollow a user.
+   * 
+   * @param userId user to unfollow.
+   */
+  unfollow(userId?: number): void {
     if (userId)
       this.userService.unfollow(userId).subscribe((_) => this.getFollowing());
   }
 
+  /**
+   * Set users to the users searched.
+   * 
+   * @param data users 
+   * @returns 
+   */
   search(data: any): void {
     if (!data || data === []) return this.getUsers();
     this.users = data;

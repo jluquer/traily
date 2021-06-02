@@ -32,6 +32,14 @@ export class TrailListComponent implements OnInit {
       );
   }
 
+  /**
+   * Fires an alert to see if the user is sure to delete the trail.
+   * If the user press yes, then it will delete the trail and will 
+   * emit an event to parent to let the parent know that a trail has
+   * been deleted.
+   * 
+   * @param trailId trail to be deleted
+   */
   deleteTrail(trailId: number) {
     this.alertService
       .custom({
