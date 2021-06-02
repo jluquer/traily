@@ -9,6 +9,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class LoggedGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+
+  /**
+   * Allow angular router to activate the route if the user is  
+   * logged.
+   * 
+   * @returns true if the user is logged.
+   */
   canActivate(): Observable<boolean> {
     return this.authService.isLogged$.pipe(
       first(),
