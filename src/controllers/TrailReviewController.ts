@@ -8,6 +8,15 @@ import { TrailReview } from "../models/TrailReview";
 import { User } from "../models/User";
 
 export default class TrailReviewController {
+  /**
+   * Creates a new trail review. If the user id or the trail id does not belong
+   * to a trail or user it will fail. If there is a trail review with the same
+   * user and trail it will also return an error response.
+   *
+   * @param req
+   * @param res
+   * @returns
+   */
   static async create(req: Request, res: Response): Promise<Response> {
     try {
       const trailReviewRepository = getRepository(TrailReview);
@@ -32,11 +41,18 @@ export default class TrailReviewController {
     }
   }
 
+  /**
+   * Get all trail reviews by trail id.
+   * 
+   * @param req
+   * @param res
+   * @returns
+   */
   static async getAllByTrailId(req: Request, res: Response): Promise<Response> {
     try {
       const trailId = req.header("trailId");
       if (!+trailId) throw "Invalid trailId";
-      
+
       return res.json(
         await getRepository(TrailReview).find({
           relations: ["user"],
@@ -48,6 +64,13 @@ export default class TrailReviewController {
     }
   }
 
+  /**
+   * Updates one trail review. If there isn't  a trail review with the user id
+   * and trail id from headers it will fail.
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   static async update(req: Request, res: Response): Promise<Response> {
     try {
       const trailReviewRepository = getRepository(TrailReview);
@@ -74,6 +97,13 @@ export default class TrailReviewController {
     }
   }
 
+  /**
+   * Deletes one trail review from database.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   static async delete(req: Request, res: Response): Promise<Response> {
     try {
       const trailReviewRepository = getRepository(TrailReview);

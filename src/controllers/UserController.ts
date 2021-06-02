@@ -7,15 +7,30 @@ import { User } from "../models/User";
 export default class UserController {
   constructor() {}
 
+  /**
+   * Get all users from database.
+   * 
+   * @param req 
+   * @param res 
+   * @returns
+   */
   getAll = async (req: Request, res: Response) => {
     try {
       const users = await getRepository(User).find();
-      res.status(200).json(users);
+      return res.status(200).json(users);
     } catch {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
   };
 
+  /**
+   * Get one user by id in headers. If it can't find any user
+   * it will fail.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   getOneById = async (req: Request, res: Response) => {
     const { id } = req.headers;
     if (!+id) return res.status(400).json("Invalid user id");
@@ -28,6 +43,12 @@ export default class UserController {
     }
   };
 
+  /**
+   * Creates a new user with the password hashed to enhance security.
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   create = async (req: Request, res: Response) => {
     const { email, name, password } = req.body;
     const newUser = new User();
@@ -48,6 +69,13 @@ export default class UserController {
     }
   };
 
+  /**
+   * Updates a user.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   update = async (req: Request, res: Response) => {
     const { id } = req.headers;
     const { name, email } = req.body;
@@ -66,7 +94,7 @@ export default class UserController {
 
       if (loggedUser.type === 0 && req.body.type) userToUpdate.type = req.body.type;
     } catch (err) {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
 
     const errors = await validate(userToUpdate);
@@ -74,24 +102,40 @@ export default class UserController {
 
     try {
       await userRepository.save(userToUpdate);
-      res.status(201).json({ status: "success" });
+      return res.status(201).json({ status: "success" });
     } catch (err) {
-      res.status(409).json({ message: "Email already in use" });
+      return res.status(409).json({ message: "Email already in use" });
     }
   };
 
+  /**
+   * Delete only one user by its id if the id exist and only belongs
+   * to a user.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   delete = async (req: Request, res: Response) => {
     try {
       const { id } = req.headers;
       const userRepository = getRepository(User);
       const userToRemove = await userRepository.findOneOrFail(+id);
       await userRepository.remove(userToRemove);
-      res.status(201).json({ status: "success" });
+      return res.status(201).json({ status: "success" });
     } catch (err) {
-      res.status(404).json({ status: "error" });
+      return res.status(404).json({ status: "error" });
     }
   };
 
+  /**
+   * Creates a new follow relationship. The user id from token will be the
+   * follower user and the user id in headers will be the followed user.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   follow = async (req: Request, res: Response) => {
     const { id } = req.headers;
 
@@ -125,6 +169,14 @@ export default class UserController {
     }
   };
 
+  /**
+   * It will remove the row where the user from api token is following the
+   * user from headers id.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   unfollow = async (req: Request, res: Response) => {
     const { id } = req.headers;
     const followRepository = getRepository(Follow);
@@ -145,6 +197,13 @@ export default class UserController {
     }
   };
 
+  /**
+   * Get all the users followed by the user from api token.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   async getFollowing(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(await User.getFollowing(+res.locals.payload.userId));
@@ -153,6 +212,13 @@ export default class UserController {
     }
   }
 
+  /**
+   * Get all the followers from the api token user.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   async getFollowers(req: Request, res: Response): Promise<Response> {
     try {
       const users = await getRepository(Follow).find({
@@ -165,7 +231,14 @@ export default class UserController {
     }
   }
 
-  search = async (req: Request, res: Response) => {
+  /**
+   * Search a user by name.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
+  async search(req: Request, res: Response): Promise<Response> {
     try {
       const { name } = req.headers;
 
