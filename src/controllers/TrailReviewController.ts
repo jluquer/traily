@@ -67,6 +67,7 @@ export default class TrailReviewController {
   /**
    * Updates one trail review. If there isn't  a trail review with the user id
    * and trail id from headers it will fail.
+   * 
    * @param req 
    * @param res 
    * @returns 

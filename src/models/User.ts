@@ -50,15 +50,28 @@ export class User {
   @OneToMany(() => TrailComment, (trailComment) => trailComment.user)
   trailComments: TrailComment[];
 
+  /**
+   * Hashes the password generating a salt.
+   */
   hashPassword(): void {
     const salt = bcrypt.genSaltSync(10);
     this.password = bcrypt.hashSync(this.password, salt);
   }
 
+  /**
+   * Checks if the password is the same as the hashed password.
+   * @param password 
+   * @returns 
+   */
   checkPassword(password: string): boolean {
     return bcrypt.compareSync(password, this.password);
   }
 
+  /**
+   * Get all the users you are following.
+   * @param userId user id.
+   * @returns array of users following.
+   */
   static async getFollowing(userId: number) {
     const users = await getRepository(Follow).find({
       where: { followerUserId: userId },
