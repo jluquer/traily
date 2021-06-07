@@ -24,6 +24,11 @@ export class TrailComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  /**
+   * Gets the logged user and the trail related to the trail id
+   * in route params. Moreover, gets the comments from the trail
+   * to be displayed.
+   */
   ngOnInit(): void {
     const trailId = this.activatedRoute.snapshot.params.trailId;
     this.loggedUserId = this.authService.getLoggedUserId();

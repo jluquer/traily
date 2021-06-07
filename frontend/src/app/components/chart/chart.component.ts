@@ -43,7 +43,10 @@ export class ChartComponent implements OnChanges {
     ];
   }
 
-  get generateDistance() {
+  /**
+   * Create distance labels to be displayed in chart.
+   */
+  get generateDistance(): Label[] {
     let labels: Array<Label> = [];
     const sum = this.distance / 10;
     for (let i = 0; i < 10; i++) {
@@ -53,7 +56,11 @@ export class ChartComponent implements OnChanges {
     return labels;
   }
 
-  get generateElevation() {
+  /**
+   * Creates random data based on the trail elevation
+   * gain to display a random performance chart.
+   */
+  get generateElevation(): Array<number> {
     let dataSet = [];
     while (dataSet.length < 10) {
       dataSet.push(Math.floor(Math.random() * this.elevationGain) + 1);

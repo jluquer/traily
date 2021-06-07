@@ -91,6 +91,12 @@ export class Trail {
   @OneToMany(() => TrailComment, (trailComment) => trailComment.trail)
   trailComments: TrailComment[];
 
+  /**
+   * Checks if the filename has the extension .gpx.
+   * 
+   * @param filename 
+   * @returns true if it's a gpx file.
+   */
   static isTrackFile(filename: string): boolean {
     return filename !== undefined && filename.match(/\.(gpx)$/g) !== null;
   }

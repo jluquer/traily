@@ -9,6 +9,13 @@ import { User } from "../models/User";
 import StorageHelper from "../libs/StorageHelper";
 
 export default class TrailController {
+  /**
+   * Creates a new trail. The user will be the user stored in token (the logged user).
+   *
+   * @param req
+   * @param res
+   * @returns status success or error.
+   */
   static async create(req: Request, res: Response): Promise<Response> {
     try {
       const user = await getRepository(User).findOne(res.locals.payload.userId);
@@ -30,6 +37,14 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Get all trails from database. It will return in the object the user and activity
+   * related.
+   *
+   * @param req
+   * @param res
+   * @returns trails or error.
+   */
   static async getAll(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(await getRepository(Trail).find({ relations: ["user", "activity"] }));
@@ -38,6 +53,14 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Get one trail by id or fails. It will return in the object the user and activity
+   * related.
+   *
+   * @param req
+   * @param res
+   * @returns trail or error.
+   */
   static async getOneById(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(
@@ -50,6 +73,13 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Updates one trail if the trail id provided exists.
+   *
+   * @param req
+   * @param res
+   * @returns
+   */
   static async update(req: Request, res: Response): Promise<Response> {
     try {
       const trailId = +req.headers.id;
@@ -79,6 +109,13 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Deletes only one trail if the trail id provided belongs to a trail.
+   *
+   * @param req
+   * @param res
+   * @returns
+   */
   static async delete(req: Request, res: Response): Promise<Response> {
     try {
       const trailRepository = getRepository(Trail);
@@ -96,6 +133,14 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Uploads a trail file to uploads folder and returns the path to be stored in
+   * database.
+   * 
+   * @param req
+   * @param res
+   * @returns
+   */
   static async uploadFile(req: Request, res: Response): Promise<Response> {
     try {
       const filepath = req.file.filename;
@@ -109,6 +154,13 @@ export default class TrailController {
     }
   }
 
+  /**
+   * Gets the trail gpx file from the trail filepath.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   static async getTrackFile(req: Request, res: Response): Promise<Response> {
     try {
       const trailFilepath = req.headers.filepath as string;
@@ -117,15 +169,14 @@ export default class TrailController {
       return res.status(404).json({ status: "error" });
     }
   }
-  static async downloadTrackFile(req: Request, res: Response): Promise<Response> {
-    try {
-      const trailFilepath = req.headers.filepath as string;
-      res.download(StorageHelper.getFile(trailFilepath.toString()));
-    } catch (err) {
-      return res.status(404).json({ status: "error" });
-    }
-  }
 
+  /**
+   * Get all trails from users you follow.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   static async getDashboardTrails(req: Request, res: Response): Promise<Response> {
     const usersFollowing = await User.getFollowing(+res.locals.payload.userId);
     let trails = [];
@@ -140,6 +191,13 @@ export default class TrailController {
     return res.json(trails);
   }
 
+  /**
+   * Get all trails that a user has uploaded.
+   * 
+   * @param req 
+   * @param res 
+   * @returns 
+   */
   static async getAllByUserId(req: Request, res: Response): Promise<Response> {
     try {
       return res.json(

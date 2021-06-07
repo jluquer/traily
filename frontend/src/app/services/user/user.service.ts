@@ -12,19 +12,30 @@ export class UserService {
 
   constructor(private http: HttpClient) {}
 
+  /**
+   * 
+   * @param user 
+   * @returns 
+   */
   createUser(user: User): Observable<any> {
     return this.http.post(this.userUrl + 'create', user);
   }
 
   /**
-   * Get all users from database
+   * Get all users from database.
    *
-   * @returns {Observable<any>}
+   * @returns observable with users.
    */
   getAll(): Observable<any> {
     return this.http.get(this.userUrl + 'getAll');
   }
 
+  /**
+   * Get one user by user id.
+   * 
+   * @param userId user id who you are looking for.
+   * @returns observable with user.
+   */
   getOneById(userId: number): Observable<any> {
     return this.http.get(this.userUrl + this.getOneById.name, {
       headers: {
@@ -33,10 +44,20 @@ export class UserService {
     });
   }
 
+  /**
+   * Get all the users that the logged user is following.
+   * 
+   * @returns observable with users.
+   */
   getFollowing(): Observable<any> {
     return this.http.get(this.userUrl + 'getFollowing');
   }
 
+  /**
+   * Get all the users who follow the logged user.
+   * 
+   * @returns observable with users.
+   */
   getFollowers(): Observable<any> {
     return this.http.get(this.userUrl + 'getFollowers');
   }
@@ -44,8 +65,8 @@ export class UserService {
   /**
    * Follow a user
    *
-   * @param userId {number} User id you are going to follow
-   * @returns {Observable<any>}
+   * @param userId User id who you are going to follow
+   * @returns observable with response from backend.
    */
   follow(userId: number): Observable<any> {
     return this.http.post(
@@ -62,8 +83,8 @@ export class UserService {
   /**
    * Unfollow a user
    *
-   * @param userId {number} User id you are going to unfollow
-   * @returns {Observable<any>}
+   * @param userId User id who you are going to unfollow
+   * @returns observable with response from backend.
    */
   unfollow(userId: number): Observable<any> {
     return this.http.delete(this.userUrl + 'unfollow', {
@@ -76,8 +97,8 @@ export class UserService {
   /**
    * Search users by their name
    * 
-   * @param name {string}
-   * @returns {Observable<any>}
+   * @param name user name to be searched
+   * @returns observable with response from backend.
    */
   search(name: string): Observable<any> {
     return this.http.get(this.userUrl + 'search', {

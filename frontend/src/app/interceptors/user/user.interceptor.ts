@@ -14,6 +14,13 @@ import { catchError, map, tap } from 'rxjs/operators';
 export class UserInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
 
+  /**
+   * Intercept all the requests and adds the api token if needed.
+   * 
+   * @param req 
+   * @param next 
+   * @returns 
+   */
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler
@@ -35,6 +42,12 @@ export class UserInterceptor implements HttpInterceptor {
     );
   }
 
+  /**
+   * Check if the url given requires token or not.
+   * 
+   * @param url to send petition.
+   * @returns true if the route requires authorization.
+   */
   private requiresAuthorization(url: string): boolean {
     const unrestrictedUrls = ['user/create', 'auth/login'];
 

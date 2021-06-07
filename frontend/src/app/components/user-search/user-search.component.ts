@@ -1,21 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
-import { from, fromEvent, of, Subject, Subscription } from 'rxjs';
-import {
-  debounceTime,
-  delay,
-  distinctUntilChanged,
-  map,
-  mergeMap,
-} from 'rxjs/operators';
+import { Component, EventEmitter, OnDestroy, Output } from '@angular/core';
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import User from 'src/app/models/user';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -40,7 +25,13 @@ export class UserSearchComponent implements OnDestroy {
       .subscribe((search) => this.search(search));
   }
 
-  search(search: string) {
+  /**
+   * Search user by names and emits the result as event
+   * to the parent component.
+   * 
+   * @param search name to be searched
+   */
+  search(search: string): void {
     this.searchEvent.emit(undefined);
     this.userService.search(search).subscribe(
       (users) => this.searchEvent.emit(users),

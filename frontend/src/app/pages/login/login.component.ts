@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
@@ -22,7 +22,13 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onSubmit() {
+  /**
+   * This function is used when the user submits the login form.
+   * It will check if the email and password inputs are correct,
+   * and if they are correct then it will send the petition
+   * to log in to the backend.
+   */
+  onSubmit(): void {
     this.displayErrors();
     if (
       this.email &&
@@ -40,15 +46,29 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  get email() {
+  /**
+   * Returns the email form control from the form group.
+   * @returns an email
+   */
+  get email(): AbstractControl | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  /**
+   * Returns the password form control from the form group.
+   * @returns a password.
+   */
+  get password(): AbstractControl | null {
     return this.loginForm.get('password');
   }
 
-  displayErrors(display = true) {
+  /**
+   * Allows to display errors or not. Changing the values of
+   * displayError variable.
+   * 
+   * @param display boolean to display errors or not
+   */
+  displayErrors(display = true): void {
     Object.keys(this.displayError).map(
       (key: string) => (this.displayError[key] = display)
     );

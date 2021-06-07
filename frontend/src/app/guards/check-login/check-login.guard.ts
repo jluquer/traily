@@ -9,6 +9,13 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class CheckLoginGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
+
+  /**
+   * Allow angular router to activate the route if the user is not 
+   * logged.
+   * 
+   * @returns true if the user is not logged.
+   */
   canActivate(): Observable<boolean> {
     return this.authService.isLogged$.pipe(
       first(),

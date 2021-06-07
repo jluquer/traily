@@ -5,6 +5,14 @@ import { User } from "../models/User";
 import * as jwt from "jsonwebtoken";
 
 export default class AuthController {
+  /**
+   * Log in to the application if email and password are correct. It will return
+   * a token that expires in 1 hour.
+   * 
+   * @param req 
+   * @param res 
+   * @returns response with token or error
+   */
   login = async (req: Request, res: Response) => {
     const { email, password } = req.body;
     let user: User = null;
@@ -19,7 +27,7 @@ export default class AuthController {
         .where("email = :email", { email: email })
         .getOneOrFail();
     } catch (err) {
-      res.status(400).json({ message: "Email or password are incorrect!" });
+      return res.status(400).json({ message: "Email or password are incorrect!" });
     }
 
     if (!user.checkPassword(password))
@@ -29,6 +37,6 @@ export default class AuthController {
       expiresIn: "1h",
     });
 
-    res.json({ token });
+    return res.json({ token });
   };
 }

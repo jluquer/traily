@@ -67,6 +67,11 @@ export class TrailFormComponent implements OnInit {
     });
   }
 
+  /**
+   * When the user submits the login form it will check if inputs 
+   * are correct, and if they are correct then it will send the 
+   * petition to create or update the trail to the backend.
+   */
   onSubmit() {
     this.submitted = true;
 
@@ -79,8 +84,11 @@ export class TrailFormComponent implements OnInit {
     }
   }
 
-  updateTrail() {
-    console.log(this.trail);
+  /**
+   * Updates the trail and if there is not any error it will
+   * redirect to trails route.
+   */
+  updateTrail(): void {
     this.trailService.update(this.trail).subscribe(
       (res) => {
         this.router.navigate(["/trails"])
@@ -89,7 +97,11 @@ export class TrailFormComponent implements OnInit {
     );
   }
 
-  createTrail() {
+  /**
+   * Create the trail and if there is not any error it will
+   * redirect to trails route.
+   */
+  createTrail(): void {
     this.trailService.create(this.trail).subscribe(
       (res) => {
         this.router.navigate(["/trails"])
@@ -98,7 +110,13 @@ export class TrailFormComponent implements OnInit {
     );
   }
 
-  getFilePath(filepath: string) {
+  /**
+   * Set the trail filepath returned from server when the gpx
+   * file is uploaded to the storage.
+   * 
+   * @param filepath filepath from file uploaded.
+   */
+  setFilePath(filepath: string): void {
     this.trail.trailFilepath = filepath;
   }
 }

@@ -15,6 +15,10 @@ export class TrailsComponent implements OnInit {
     this.getTrails();
   }
 
+  /**
+   * Get all trails from observable and sets trails variable to
+   * the trails that returns the backend.
+   */
   getTrails() {
     this.trailService.getAllTrails().subscribe(
       (trails) => (this.trails = trails),

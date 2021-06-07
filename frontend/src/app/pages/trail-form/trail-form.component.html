@@ -99,7 +99,7 @@
         </div>
       </div>
 
-      <app-file-uploader (filePathEvent)="getFilePath($event)" [filepath]="trail.trailFilepath"></app-file-uploader>
+      <app-file-uploader (filePathEvent)="setFilePath($event)" [filepath]="trail.trailFilepath"></app-file-uploader>
 
       <input type="submit" class="btn btn-success" value="{{ edit ? 'Modify' : 'Create' }}" />
     </form>

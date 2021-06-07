@@ -16,6 +16,9 @@ export class HeaderComponent implements OnInit {
     this.userId = this.authService.getLoggedUserId();
   }
 
+  /**
+   * Logout the user from app when clicking on the logout button.
+   */
   logout() {
     this.authService.logout();
   }

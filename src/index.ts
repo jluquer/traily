@@ -7,18 +7,16 @@ import * as morgan from "morgan";
 import * as cors from "cors";
 const port = process.env.PORT || 3000;
 
-createConnection()
-  .then(async () => {
-    const app = express();
+const app = express();
 
-    app.use(cors());
-    app.use(helmet());
-    app.use(morgan("dev"));
-    app.use(express.json());
-    app.use("/api", routes);
+app.use(cors());
+app.use(helmet());
+app.use(morgan("dev"));
+app.use(express.json());
+app.use("/api", routes);
 
-    app.listen(port, () => {
-      console.log(`Server running on http://localhost:${port}`);
-    });
-  })
-  .catch((error) => console.log(error));
+app.listen(port, () => {
+  console.log(`Server running on http://localhost:${port}`);
+});
+
+createConnection().catch((error) => console.log(error));

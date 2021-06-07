@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/alerts/alert.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -28,6 +33,12 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * This function is used when the user submits the login form.
+   * It will check if inputs are correct, and if they are correct
+   * then it will send the petition to create the user to the
+   * backend.
+   */
   onSubmit() {
     this.displayErrors = true;
 
@@ -59,19 +70,35 @@ export class SignUpComponent implements OnInit {
         );
   }
 
-  get email() {
+  /**
+   * Returns the email form control from the form group.
+   * @returns a email.
+   */
+  get email(): AbstractControl | null {
     return this.signUpForm.get('email');
   }
 
-  get password() {
+  /**
+   * Returns the password form control from the form group.
+   * @returns a password.
+   */
+  get password(): AbstractControl | null {
     return this.signUpForm.get('password');
   }
 
-  get firstName() {
+  /**
+   * Returns the first name form control from the form group.
+   * @returns a first name.
+   */
+  get firstName(): AbstractControl | null {
     return this.signUpForm.get('firstName');
   }
 
-  get lastName() {
+  /**
+   * Returns the last name form control from the form group.
+   * @returns a last name.
+   */
+  get lastName(): AbstractControl | null {
     return this.signUpForm.get('lastName');
   }
 }
