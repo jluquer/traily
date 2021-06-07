@@ -1,16 +1,12 @@
 @mixin button-variant(
   $background,
   $border: $background,
-  $color: color-contrast($background),
   $bg-dark: darken($background, 10%),
-  $color-dark: color-contrast($bg-dark)
 ) {
   border-color: $border;
   background-color: $background;
-  color: $color;
 
   &:hover {
-    color: $color-dark;
     background-color: $bg-dark;
     border-color: $bg-dark;
   }
