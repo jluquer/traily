@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "ng build --output-path ../docs --base-href /traily/ --prod && cp ../docs/index.html ../docs/404.html"
+    "deploy": "ng build --output-path ../docs --base-href /traily/ --prod && cp ../docs/index.html ../docs/404.html",
+    "doc": "npx typedoc --options typedoc.json"
   },
   "private": true,
   "dependencies": {

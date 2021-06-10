@@ -1,0 +1,6 @@
+{
+  "out": "../docs-front",
+  "tsconfig": "frontend/tsconfig.app.json",
+  "entryPoints": ["./src/app"],
+  "exclude": ["**/*+(index|.spec|.e2e).ts", "**/node_modules"]
+}
