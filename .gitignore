@@ -7,3 +7,5 @@ temp/
 package-lock.json
 uploads/
 dist/
+docs-back/
+docs-front/
