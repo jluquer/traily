@@ -1,10 +1,9 @@
 # Traily :mountain:
 
-Traily is a **web application** where you can share your trails with other users. If you like to explore and enjoy nature, you are in the right place!
+Traily is a **web application** where you can share your trails with other users. If you like to explore and enjoy nature, you are in the right place! You can visit us at [Traily](https://jluquer.github.io/traily).
 
 ## Table of contents
 
-- [Table of contents](#table-of-contents)
 - [Overview :open_book:](#overview-open_book)
   - [Built with :hammer:](#built-with-hammer)
   - [Database :card_index_dividers:](#database-card_index_dividers)
@@ -38,9 +37,9 @@ Traily is a **web application** where you can share your trails with other users
 
 ## How to use :thinking:
 
-Steps to run backend:
+Steps to run backend and frontend locally in development mode:
 
-1. Change to backend directory `cd backend`
-2. Run `npm i` command
-3. Setup database settings inside `ormconfig.json` file
-4. Run `npm start` command
+1. Run `npm i` command
+2. Setup database settings inside `ormconfig.json` file
+3. Run `npm run dev` command to run the backend
+4. Open other terminal and run `npm run front` command to run the frontend
