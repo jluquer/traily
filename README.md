@@ -2,8 +2,8 @@
 
 Traily is a **web application** where you can share your trails with other users. If you like to explore and enjoy nature, you are in the right place! You can visit us at [Traily](https://jluquer.github.io/traily). You can create your own account or can use the admin account:
 
-- *Email*: admin@gmail.com
-- *Password*: admin
+- **Email**: admin@gmail.com
+- **Password**: admin
 
 ## Table of contents
 
